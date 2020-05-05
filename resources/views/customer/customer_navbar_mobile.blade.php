@@ -1,4 +1,4 @@
- HEADER MOBILE-->
+
         <header class="header-mobile d-block d-lg-none">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
@@ -19,13 +19,9 @@
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-dot-circle-o"></i>สินค้า</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                @if(auth('customer')->user()->role == 2)
-                                    <li>
-                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
-                                    </li>
-                                @else
+                                <i class="fas fa-dot-circle-o"></i>คลังสินค้า</a>
+                            <ul class=" list-unstyled js-sub-list">
+                                @if(auth('customer')->user()->role == 1)
                                 <li>
                                     <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
                                 </li>
@@ -41,6 +37,39 @@
                                 <li>
                                     <a href="{{url('/customer/thalang/tyre')}}">สาขาถลาง</a>
                                 </li>
+                                <li>
+                                    <a href="{{url('/customer/phangnga/tyre')}}">สาขาเมืองพังงา</a>
+                                </li>
+                                @elseif(auth('customer')->user()->role == 2)
+                                    <li>
+                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/customer/bypart/tyre')}}">สาขาบายพาส</a>
+                                    </li>
+                                @elseif(auth('customer')->user()->role == 3)
+                                    <li>
+                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    </li>
+                                @elseif(auth('customer')->user()->role == 4)
+                                    <li>
+                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/customer/phangnga/tyre')}}">สาขาพังงา</a>
+                                    </li>
+                                @elseif(auth('customer')->user()->role == 5)
+                                    <li>
+                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    </li>
+                                @elseif(auth('customer')->user()->role == 6)
+                                    <li>
+                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย</a>
+                                    </li>
+                                @elseif(auth('customer')->user()->role == 7)
+                                    <li>
+                                        <a href="{{url('/customer/bypart/tyre')}}">สาขาบายพาส</a>
+                                    </li>
                                 @endif
                             </ul>
                         </li>
@@ -73,13 +102,9 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-dot-circle-o"></i>สินค้า</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                @if(auth('customer')->user()->role == 2)
-                                    <li>
-                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
-                                    </li>
-                                @else
+                                <i class="fas fa-dot-circle-o"></i>คลังสินค้า</a>
+                            <ul class="list-unstyled js-sub-list">
+                                @if(auth('customer')->user()->role == 1)
                                 <li>
                                     <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
                                 </li>
@@ -95,6 +120,39 @@
                                 <li>
                                     <a href="{{url('/customer/thalang/tyre')}}">สาขาถลาง</a>
                                 </li>
+                                <li>
+                                    <a href="{{url('/customer/phangnga/tyre')}}">สาขาเมืองพังงา</a>
+                                </li>
+                                @elseif(auth('customer')->user()->role == 2)
+                                    <li>
+                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/customer/bypart/tyre')}}">สาขาบายพาส</a>
+                                    </li>
+                                @elseif(auth('customer')->user()->role == 3)
+                                    <li>
+                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    </li>
+                                @elseif(auth('customer')->user()->role == 4)
+                                    <li>
+                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/customer/phangnga/tyre')}}">สาขาพังงา</a>
+                                    </li>
+                                @elseif(auth('customer')->user()->role == 5)
+                                    <li>
+                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    </li>
+                                @elseif(auth('customer')->user()->role == 6)
+                                    <li>
+                                        <a href="{{url('/customer/khokkloi/tyre')}}">สาขาโคกกลอย</a>
+                                    </li>
+                                @elseif(auth('customer')->user()->role == 7)
+                                    <li>
+                                        <a href="{{url('/customer/bypart/tyre')}}">สาขาบายพาส</a>
+                                    </li>
                                 @endif
                             </ul>
                         </li>

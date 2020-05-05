@@ -41,15 +41,7 @@
                                                                 <span class="text-danger">({{ $errors->first('master_name') }})</span>
                                                                 @endif
                                                             </label>
-                                                            <input class="form-control" name="master_name" value="{{Auth::user()->master_name}}" type="text">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>สาขา
-                                                                @if ($errors->has('branch'))
-                                                                <span class="text-danger">({{ $errors->first('branch') }})</span>
-                                                                @endif
-                                                            </label>
-                                                            <input class="form-control" name="branch" value="{{Auth::user()->branch}}" type="text">
+                                                            <input class="form-control" name="master_name" value="{{Auth::user()->master_name}}" type="text" disabled="disablaed">
                                                         </div> 
                                                     </div>
                                                     <div class="col-md-6">

@@ -278,7 +278,7 @@ section {
 }
 
 .page-container {
-    background: #e5e5e5;
+    background: #2B3282;
     padding-left: 300px;
 }
 
@@ -3941,7 +3941,6 @@ section {
 .user-data {
     border: 1px solid #e5e5e5;
     background: #fff;
-    padding-top: 44px;
 }
 
 .user-data .title-3 {
@@ -4352,13 +4351,22 @@ section {
     text-transform: uppercase;
 }
 
-.table-data .table td {
+/*.table-data .table td {
     border-top: none;
     border-bottom: 1px solid #f2f2f2;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 20px;
-    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+}*/
+
+.user-data .table td{
+   border-top: none;
+    border-bottom: 1px solid #f2f2f2;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px; 
 }
 
 .table-data .table tr td:last-child {
@@ -14640,3 +14648,12 @@ section {
 .vue-lists ul, .vue-lists ol {
     padding-left: 30px;
 }
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-container > div {
+  text-align: center;
+}   

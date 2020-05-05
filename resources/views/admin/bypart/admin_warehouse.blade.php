@@ -9,6 +9,44 @@
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
+                    @if(auth('admin')->user()->role == "1")
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        เพิ่มสินค้าในคลัง
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <a href="{{url('/admin/bypart/create-tyre')}}" class="btn btn-outline-primary btn-lg btn-block">ยางรถยนต์</a>
+                                            </div>
+                                            <!-- <div class="col-md-4">
+                                                <a href="{{url('/master/bypart/create-max')}}" class="btn btn-outline-primary btn-lg btn-block">แม็กซ์</a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <a href="{{url('/master/bypart/create-oil')}}" class="btn btn-outline-primary btn-lg btn-block">น้ำมันเครื่อง</a>
+                                            </div>
+                                            <div class="col-md-4" style="margin-top: 10px;">
+                                                <a href="{{url('/master/bypart/create-battery')}}" class="btn btn-outline-primary btn-lg btn-block">แบตเตอรี่</a>
+                                            </div>
+                                            <div class="col-md-4" style="margin-top: 10px;">
+                                                <a href="{{url('/master/bypart/create-brake')}}" class="btn btn-outline-primary btn-lg btn-block">เบรก</a>
+                                            </div>
+                                            <div class="col-md-4" style="margin-top: 10px;">
+                                                <a href="{{url('/master/bypart/create-shock')}}" class="btn btn-outline-primary btn-lg btn-block">โช้ค</a>
+                                            </div>
+                                            <div class="col-md-4" style="margin-top: 10px;">
+                                                <a href="{{url('/master/bypart/create-accessory')}}" class="btn btn-outline-primary btn-lg btn-block">อะไหล่รถยนต์</a>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">

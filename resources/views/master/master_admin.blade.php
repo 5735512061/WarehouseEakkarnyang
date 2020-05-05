@@ -20,15 +20,13 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <td>
-                                                        <label class="au-checkbox">
-                                                            <input type="checkbox">
-                                                            <span class="au-checkmark"></span>
-                                                        </label>
-                                                    </td>
+                                                    <td>#</td>
                                                     <td>ชื่อ</td>
                                                     <td>สาขา</td>
                                                     <td>เบอร์โทรศัพท์</td>
+                                                    <td>สถานะ</td>
+                                                    <td>บทบาท</td>
+                                                    <td>หมายเหตุ</td>
                                                     <td></td>
                                                 </tr>
                                             </thead>
@@ -36,10 +34,9 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <label class="au-checkbox">
-                                                            <input type="checkbox">
-                                                            <span class="au-checkmark"></span>
-                                                        </label>
+                                                        <div class="table-data__info">
+                                                            <h6>{{$NUM_PAGE*($page-1) + $admin+1}}</h6>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="table-data__info">
@@ -56,6 +53,29 @@
                                                         	<h6>{{$value->tel}}</h6>
                                                         </div>
                                                     </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>{{$value->status}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>{{$value->role}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    @if($value->comment == "")
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6 style="color: red;">-</h6>
+                                                        </div>
+                                                    </td>
+                                                    @else
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6 style="color: red;">{{$value->comment}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    @endif
                                                     <td>
                                                         <div class="table-data__info">
 								                              	<form action="{{url('master/block')}}/{{$value->id}}" onsubmit="return myFunction('{{$admin}}');return false;" method="post">

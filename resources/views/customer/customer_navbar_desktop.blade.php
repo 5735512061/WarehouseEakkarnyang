@@ -7,7 +7,7 @@
                                 <input class="au-input au-input--xl" type="hidden" name="search" placeholder="ค้นหาสินค้า" autocomplete="off" />
                             </form>
                             <div class="header-button">
-                                <div class="noti-wrap">
+                                <!-- <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
                                         <i class="zmdi zmdi-notifications"></i>
                                         <span class="quantity">3</span>
@@ -47,10 +47,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
-                                        <div class="image">
+                                        <div class="image rounded-circle">
                                             <img src="{{url('images')}}/{{auth('customer')->user()->image}}">
                                         </div>
                                         <div class="content">
@@ -58,7 +58,7 @@
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
-                                                <div class="image">
+                                                <div class="image rounded-circle">
                                                     <a href="#">
                                                         <img src="{{url('images')}}/{{auth('customer')->user()->image}}">
                                                     </a>
@@ -75,19 +75,19 @@
                                                     <a href="{{url('/customer/profile')}}">
                                                         <i class="zmdi zmdi-account"></i>แก้ไขบัญชีผู้ใช้</a>
                                                 </div>
-                                                <div class="account-dropdown__item">
+                                                <!-- <div class="account-dropdown__item">
                                                     <a href="{{url('/customer/changePassword')}}">
                                                         <i class="zmdi zmdi-settings"></i>เปลี่ยนรหัสผ่าน</a>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                <a class="dropdown-item" href="{{ route('customer.logout') }}"
                                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                                     {{ __('ออกจากระบบ') }}
                                                 </a>
 
-                                                <form id="logout-form" action="{{ 'App\Customer' == Auth::getProvider()->getModel() ? route('customer.logout') : route('logout') }}" method="POST" style="display: none;">
+                                                <form id="logout-form" action="{{ 'App\Customer' == Auth::getProvider()->getModel() ? route('customer.logout') : route('customer.logout') }}" method="POST" style="display: none;">
                                                     @csrf
                                                 </form>
                                             </div>

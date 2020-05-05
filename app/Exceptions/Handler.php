@@ -55,9 +55,13 @@ class Handler extends ExceptionHandler
     protected function unauthenticated($request, AuthenticationException $exception)
     {
 
-        if ($request->expectsJson()) {
-                return response()->json(['error' => 'Unauthenticated.'], 401);
-        }
+        // if ($request->expectsJson()) {
+        //         return response()->json(['error' => 'Unauthenticated.'], 401);
+        // }
+
+        return $request->expectsJson()
+            ? response()->json(['message' => $exception->getMessage()], 401)
+            : redirect()->guest(route('customer.login', ['account' => $request->route('account')]));
 
         $guard = array_get($exception->guards(),0);
         switch ($guard) {
@@ -74,6 +78,33 @@ class Handler extends ExceptionHandler
             break;
         }
         return redirect()->guest(route($login));
+    }
+
+    protected function prepareException(Exception $e)
+    {
+        if ($e instanceof ModelNotFoundException) {
+            $e = new NotFoundHttpException($e->getMessage(), $e);
+        } elseif ($e instanceof AuthorizationException) {
+            $e = new AccessDeniedHttpException($e->getMessage(), $e);
+        } elseif ($e instanceof TokenMismatchException) {
+            //   return redirect()->route('customer.login');
+            switch ($guard) {
+                case 'admin':
+                  $login = 'admin.login';
+                  break;
+      
+                case 'customer':
+                  $login = 'customer.login';
+                  break;
+      
+                default:
+                  $login = 'login';
+                  break;
+              }
+              return redirect()->guest(route($login));
+        }
+
+        return $e;
     }
 
 }

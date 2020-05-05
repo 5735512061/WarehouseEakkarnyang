@@ -41,26 +41,26 @@
                                                                 <span class="text-danger">({{ $errors->first('customer_name') }})</span>
                                                                 @endif
                                                             </label>
-                                                            <input class="form-control" name="customer_name" value="{{Auth::user()->customer_name}}" type="text">
+                                                            <input class="form-control" name="customer_name" value="{{Auth::user()->customer_name}}" type="text" disabled="disabled">
                                                         </div>
-                                                        <div class="form-group">
+                                                        <!-- <div class="form-group">
                                                             <label>ที่อยู่
                                                                 @if ($errors->has('address'))
                                                                 <span class="text-danger">({{ $errors->first('address') }})</span>
                                                                 @endif
                                                             </label>
                                                             <input class="form-control" name="address" value="{{Auth::user()->address}}" type="text">
-                                                        </div> 
+                                                        </div> --> 
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="form-group">
+                                                        <!-- <div class="form-group">
                                                             <label>อีเมลเข้าใช้งานระบบ
                                                                 @if ($errors->has('email'))
                                                                 <span class="text-danger">({{ $errors->first('email') }})</span>
                                                                 @endif
                                                             </label>
                                                             <input class="form-control" name="email" value="{{Auth::user()->email}}" type="text">
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group">
                                                             <label>เบอร์โทรศัพท์
                                                                 @if ($errors->has('tel'))

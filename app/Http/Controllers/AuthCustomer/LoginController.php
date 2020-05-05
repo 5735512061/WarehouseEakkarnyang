@@ -60,6 +60,20 @@ class LoginController extends Controller
        return redirect()->back()->withInput($request->only('customer_name','remember'));
     }
 
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $remember = $request->has('remember') ? true : false; 
+        if (Auth::attempt(['master_name' => $request->master_name, 'password' => $request->password], $remember)) {
+                return redirect()->guest(route( 'customer.login' ));
+            }
+            
+    }
+
     public function logout(Request $request)
     {
         Auth::guard('customer')->logout();

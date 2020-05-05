@@ -20,7 +20,11 @@
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-dot-circle-o"></i>คลังสินค้า</a>
+                            @if(Auth::user()->role == "1")
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            @else
+                            <ul class="list-unstyled js-sub-list">
+                            @endif
                                 @if(Auth::user()->role == "1")
                                 <li>
                                     <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
@@ -37,9 +41,27 @@
                                 <li>
                                     <a href="{{url('/master/thalang/warehouse')}}">สาขาถลาง</a>
                                 </li>
+                                <li>
+                                    <a href="{{url('/master/phangnga/warehouse')}}">สาขาเมืองพังงา</a>
+                                </li>
                                 @else
                                 <li>
                                     <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/bypart/warehouse')}}">สาขาบายพาส</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/thaiwatsadu/warehouse')}}">สาขาไทวัสดุ</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/chaofa/warehouse')}}">สาขาเจ้าฟ้าตะวันออก</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/thalang/warehouse')}}">สาขาถลาง</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/phangnga/warehouse')}}">สาขาเมืองพังงา</a>
                                 </li>
                                 @endif
                             </ul>
@@ -98,7 +120,10 @@
                                     <a href="{{url('/master/register-admin')}}">ลงทะเบียนผู้ใช้งาน</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/master/register-admin')}}">ผู้ใช้งาน</a>
+                                    <a href="{{url('/master/data-admin')}}">ผู้ใช้งาน</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/role')}}">สิทธิ์การเข้าใช้งาน</a>
                                 </li>
                             </ul>
                         </li>
@@ -121,7 +146,11 @@
                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-dot-circle-o"></i>คลังสินค้า</a>
+                            @if(Auth::user()->role == "1")
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            @else
+                            <ul class="list-unstyled js-sub-list">
+                            @endif
                                 @if(Auth::user()->role == "1")
                                 <li>
                                     <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
@@ -138,9 +167,27 @@
                                 <li>
                                     <a href="{{url('/master/thalang/warehouse')}}">สาขาถลาง</a>
                                 </li>
+                                <li>
+                                    <a href="{{url('/master/phangnga/warehouse')}}">สาขาเมืองพังงา</a>
+                                </li>
                                 @else
                                 <li>
                                     <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/bypart/warehouse')}}">สาขาบายพาส</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/thaiwatsadu/warehouse')}}">สาขาไทวัสดุ</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/chaofa/warehouse')}}">สาขาเจ้าฟ้าตะวันออก</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/thalang/warehouse')}}">สาขาถลาง</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/phangnga/warehouse')}}">สาขาเมืองพังงา</a>
                                 </li>
                                 @endif
                             </ul>
@@ -202,7 +249,7 @@
                                     <a href="{{url('/master/data-admin')}}">ผู้ใช้งาน</a>
                                 </li>
                                 <li>
-                                    <a href="#">สิทธิ์การเข้าใช้งาน</a>
+                                    <a href="{{url('/master/role')}}">สิทธิ์การเข้าใช้งาน</a>
                                 </li>
                             </ul>
                         </li>

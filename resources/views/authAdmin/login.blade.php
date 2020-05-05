@@ -39,15 +39,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('เข้าสู่ระบบ') }}
-                                </button>
+                                <div class="form-check">
+                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('ลืมรหัสผ่าน ?') }}
-                                </a>
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('remember me') }}
+                                    </label>
+                                    <button type="submit" class="btn btn-primary">
+                                    {{ __('เข้าสู่ระบบ') }}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>

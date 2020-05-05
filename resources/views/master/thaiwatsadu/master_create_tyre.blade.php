@@ -84,7 +84,7 @@
                                                     <label for="text-input" class=" form-control-label">ปีที่ผลิต</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="year" name="year" placeholder="กรุณากรอกปีที่ผลิต" class="form-control">
+                                                    <input type="text" id="year" name="year" value="2018" placeholder="กรุณากรอกปีที่ผลิต" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group">

@@ -20,16 +20,11 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <td>
-                                                        <label class="au-checkbox">
-                                                            <input type="checkbox">
-                                                            <span class="au-checkmark"></span>
-                                                        </label>
-                                                    </td>
+                                                    <td>#</td>
                                                     <td>ชื่อ</td>
                                                     <td>เบอร์โทรศัพท์</td>
-                                                    <td>อีเมล์</td>
-                                                    <td>ที่อยู่</td>
+                                                    <td>สถานะ</td>
+                                                    <td>บทบาท</td>
                                                     <td></td>
                                                 </tr>
                                             </thead>
@@ -37,10 +32,9 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <label class="au-checkbox">
-                                                            <input type="checkbox">
-                                                            <span class="au-checkmark"></span>
-                                                        </label>
+                                                        <div class="table-data__info">
+                                                            <h6>{{$NUM_PAGE*($page-1) + $customer+1}}</h6>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="table-data__info">
@@ -54,12 +48,12 @@
                                                     </td>
                                                     <td>
                                                         <div class="table-data__info">
-                                                        	<h6>{{$value->email}}</h6>
+                                                            <h6>{{$value->status}}</h6>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->address}}</h6>
+                                                            <h6>{{$value->role}}</h6>
                                                         </div>
                                                     </td>
                                                     <td>

@@ -18,6 +18,7 @@
 	@include("footer")
 
 	<!-- js -->
+	@yield("js")
 
 	<!-- Jquery JS-->
 	<script type="text/javascript" src="{{asset('/template/vendor/jquery-3.2.1.min.js')}}"></script>

@@ -39,10 +39,16 @@
                                                     <label for="select" class=" form-control-label">เลือกยี่ห้อสินค้า</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
+                                                <body onload="hiddenn('0')">
                                                     <select name="category" id="category" class="form-control">
                                                         <option>กรุณาเลือกยี่ห้อสินค้า</option>
                                                         @foreach($tyrecategories as $tyrecategory => $value)
-                                                            <option value="{{$value->category}}">{{$value->category}}</option>
+                                                            @if($value->category == "อื่นๆ")
+                                                                <option value="อื่นๆ" onclick="hiddenn('1')">อื่นๆ</option>
+                                                                <input type="text" name="txt1" id="txt1"  class="form-control" style="width:150px;">
+                                                            @else
+                                                                <option value="{{$value->category}}" onclick="hiddenn('0')">{{$value->category}}</option>
+                                                            @endif
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -84,7 +90,7 @@
                                                     <label for="text-input" class=" form-control-label">ปีที่ผลิต</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="year" name="year" placeholder="กรุณากรอกปีที่ผลิต" class="form-control">
+                                                    <input type="text" id="year" name="year" value="2018" placeholder="กรุณากรอกปีที่ผลิต" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -118,4 +124,14 @@
         </div>
         <!-- END PAGE CONTAINER-->
 </div>
+
+<script>
+function hiddenn(pvar) {
+   if(pvar==0){
+    document.getElementById("txt1").style.display = 'none';
+   }else{
+   document.getElementById("txt1").style.display = '';
+   }   
+}
+</script>
 @endsection

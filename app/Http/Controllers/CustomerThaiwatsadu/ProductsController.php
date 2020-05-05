@@ -10,20 +10,21 @@ class ProductsController extends Controller
 {
     public function product_tyre(Request $request) {
         $NUM_PAGE = 10;
-        $michelins = Tyrethaiwatsadu::where('category',"MICHELIN")->get();
-        $goodrichs = Tyrethaiwatsadu::where('category','=',"BF Goodrich")->get();
-        $otanis = Tyrethaiwatsadu::where('category','=',"OTANI")->get();
-        $maxxiss = Tyrethaiwatsadu::where('category','=',"MAXXIS")->get();
-        $yokohamas = Tyrethaiwatsadu::where('category','=',"YOKOHAMA")->get();
-        $bridgestones = Tyrethaiwatsadu::where('category','=',"BRIDGSTONE")->get();
-        $toyos = Tyrethaiwatsadu::where('category','=',"TOYO")->get();
-        $nittos = Tyrethaiwatsadu::where('category','=',"NITTO")->get();
-        $kumhos = Tyrethaiwatsadu::where('category','=',"KUMHO")->get();
-        $pirellis = Tyrethaiwatsadu::where('category','=',"PIRELLI")->get();
-        $goodyears = Tyrethaiwatsadu::where('category','=',"GOODYEAR")->get();
-        $kendas = Tyrethaiwatsadu::where('category','=',"KENDA")->get();
-        $raidens = Tyrethaiwatsadu::where('category','=',"RAIDEN")->get(); 
-        $others = Tyrethaiwatsadu::where('category','=',"อื่นๆ")->get();
+        $michelins = Tyrethaiwatsadu::where('category',"MICHELIN")->OrderBy('size','asc')->get();
+        $goodrichs = Tyrethaiwatsadu::where('category','=',"BF Goodrich")->OrderBy('size','asc')->get();
+        $otanis = Tyrethaiwatsadu::where('category','=',"OTANI")->OrderBy('size','asc')->get();
+        $maxxiss = Tyrethaiwatsadu::where('category','=',"MAXXIS")->OrderBy('size','asc')->get();
+        $yokohamas = Tyrethaiwatsadu::where('category','=',"YOKOHAMA")->OrderBy('size','asc')->get();
+        $bridgestones = Tyrethaiwatsadu::where('category','=',"BRIDGSTONE")->OrderBy('size','asc')->get();
+        $toyos = Tyrethaiwatsadu::where('category','=',"TOYO")->OrderBy('size','asc')->get();
+        $nittos = Tyrethaiwatsadu::where('category','=',"NITTO")->OrderBy('size','asc')->get();
+        $kumhos = Tyrethaiwatsadu::where('category','=',"KUMHO")->OrderBy('size','asc')->get();
+        $pirellis = Tyrethaiwatsadu::where('category','=',"PIRELLI")->OrderBy('size','asc')->get();
+        $goodyears = Tyrethaiwatsadu::where('category','=',"GOODYEAR")->OrderBy('size','asc')->get();
+        $kendas = Tyrethaiwatsadu::where('category','=',"KENDA")->OrderBy('size','asc')->get();
+        $raidens = Tyrethaiwatsadu::where('category','=',"RAIDEN")->OrderBy('size','asc')->get(); 
+        $continentals = Tyrethaiwatsadu::where('category','=',"CONTINENTAL")->OrderBy('size','asc')->get();
+        $others = Tyrethaiwatsadu::where('category','=',"อื่นๆ")->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('/customer/thaiwatsadu/customer_tyre')->with('page',$page)
@@ -41,6 +42,7 @@ class ProductsController extends Controller
                                                           ->with('goodyears',$goodyears)
                                                           ->with('kendas',$kendas)
                                                           ->with('raidens',$raidens)
+                                                          ->with('continentals',$continentals)
                                                           ->with('others',$others);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -50,8 +51,14 @@ class LoginController extends Controller
             $this->username() => 'required|string',
             'password' => 'required|string',
         ]);
-    }
 
+        $remember = $request->has('remember') ? true : false; 
+        if (Auth::attempt(['master_name' => $request->master_name, 'password' => $request->password], $remember)) {
+                return redirect('/login');
+            }
+            
+    }
+    
     public function logout(Request $request)
     {
         $this->guard()->logout();

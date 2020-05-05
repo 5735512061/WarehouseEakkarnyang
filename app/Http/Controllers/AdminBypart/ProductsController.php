@@ -4,7 +4,9 @@ namespace App\Http\Controllers\AdminBypart;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use App\Tyrebypart;
+use App\Tyrecategory;
 use Auth;
 
 class ProductsController extends Controller
@@ -13,22 +15,34 @@ class ProductsController extends Controller
         return view('/admin/bypart/admin_warehouse');
     }
 
+    public function create_tyre() {
+        $tyrecategories = Tyrecategory::get();
+        return view('/admin/bypart/admin_create_tyre')->with('tyrecategories',$tyrecategories);
+    }
+
+    public function createtyre(Request $request) {
+        $tyre = request()->all();
+        Tyrebypart::create($tyre);
+        return redirect()->action('AdminBypart\ProductsController@create_tyre');
+    }
+
     public function product_tyre(Request $request) {
         $NUM_PAGE = 10;
-        $michelins = Tyrebypart::where('category',"MICHELIN")->get();
-        $goodrichs = Tyrebypart::where('category','=',"BF Goodrich")->get();
-        $otanis = Tyrebypart::where('category','=',"OTANI")->get();
-        $maxxiss = Tyrebypart::where('category','=',"MAXXIS")->get();
-        $yokohamas = Tyrebypart::where('category','=',"YOKOHAMA")->get();
-        $bridgestones = Tyrebypart::where('category','=',"BRIDGSTONE")->get();
-        $toyos = Tyrebypart::where('category','=',"TOYO")->get();
-        $nittos = Tyrebypart::where('category','=',"NITTO")->get();
-        $kumhos = Tyrebypart::where('category','=',"KUMHO")->get();
-        $pirellis = Tyrebypart::where('category','=',"PIRELLI")->get();
-        $goodyears = Tyrebypart::where('category','=',"GOODYEAR")->get();
-        $kendas = Tyrebypart::where('category','=',"KENDA")->get();
-        $raidens = Tyrebypart::where('category','=',"RAIDEN")->get(); 
-        $others = Tyrebypart::where('category','=',"อื่นๆ")->get();
+        $michelins = Tyrebypart::where('category',"MICHELIN")->OrderBy('size','asc')->get();
+        $goodrichs = Tyrebypart::where('category','=',"BF Goodrich")->OrderBy('size','asc')->get();
+        $otanis = Tyrebypart::where('category','=',"OTANI")->OrderBy('size','asc')->get();
+        $maxxiss = Tyrebypart::where('category','=',"MAXXIS")->OrderBy('size','asc')->get();
+        $yokohamas = Tyrebypart::where('category','=',"YOKOHAMA")->OrderBy('size','asc')->get();
+        $bridgestones = Tyrebypart::where('category','=',"BRIDGSTONE")->OrderBy('size','asc')->get();
+        $toyos = Tyrebypart::where('category','=',"TOYO")->OrderBy('size','asc')->get();
+        $nittos = Tyrebypart::where('category','=',"NITTO")->OrderBy('size','asc')->get();
+        $kumhos = Tyrebypart::where('category','=',"KUMHO")->OrderBy('size','asc')->get();
+        $pirellis = Tyrebypart::where('category','=',"PIRELLI")->OrderBy('size','asc')->get();
+        $goodyears = Tyrebypart::where('category','=',"GOODYEAR")->OrderBy('size','asc')->get();
+        $kendas = Tyrebypart::where('category','=',"KENDA")->OrderBy('size','asc')->get();
+        $raidens = Tyrebypart::where('category','=',"RAIDEN")->OrderBy('size','asc')->get();
+        $continentals = Tyrebypart::where('category','=',"CONTINENTAL")->OrderBy('size','asc')->get();
+        $others = Tyrebypart::where('category','=',"อื่นๆ")->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('/admin/bypart/admin_tyre')->with('page',$page)
@@ -46,6 +60,7 @@ class ProductsController extends Controller
                                                ->with('goodyears',$goodyears)
                                                ->with('kendas',$kendas)
                                                ->with('raidens',$raidens)
+                                               ->with('continentals',$continentals)
                                                ->with('others',$others);
     }
 
@@ -62,6 +77,48 @@ class ProductsController extends Controller
         $tyre->update($request->all());
         $tyre->save();
         return redirect()->action('AdminBypart\ProductsController@product_tyre');
+    }
+
+    public function add_tyre(Request $request) {
+        $id = $request->get('id');
+        $amountadd = $request->get('amount');
+        $amount = Tyrebypart::findOrFail($id);
+        $amount = Tyrebypart::where('id',$id)->value('amount');
+        $amount += $amountadd;
+        $amount = Tyrebypart::where('id',$id)->update(['amount' =>  $amount]);
+        return back();
+    }
+
+    public function delete_tyre(Request $request) {
+        $id = $request->get('id');
+        $amountdelete = $request->get('amount');
+        $amount = Tyrebypart::findOrFail($id);
+        $amount = Tyrebypart::where('id',$id)->value('amount');
+        $amount -= $amountdelete;
+        $amount = Tyrebypart::where('id',$id)->update(['amount' =>  $amount]);
+        return back();
+    }
+
+    public function search_add_tyre(Request $request) {
+        $search = $request->get('search');
+        $id = $request->get('id');
+        $amountadd = $request->get('amount');
+        $amount = Tyrebypart::findOrFail($id);
+        $amount = Tyrebypart::where('id',$id)->value('amount');
+        $amount += $amountadd;
+        $amount = Tyrebypart::where('id',$id)->update(['amount' =>  $amount]);
+        return redirect('/admin/bypart/search?search='.$search);
+    }
+
+    public function search_delete_tyre(Request $request) {
+        $search = $request->get('search');
+        $id = $request->get('id');
+        $amountdelete = $request->get('amount');
+        $amount = Tyrebypart::findOrFail($id);
+        $amount = Tyrebypart::where('id',$id)->value('amount');
+        $amount -= $amountdelete;
+        $amount = Tyrebypart::where('id',$id)->update(['amount' =>  $amount]);
+        return redirect('/admin/bypart/search?search='.$search);
     }
 
     public function product_max() {

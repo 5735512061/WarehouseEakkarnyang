@@ -25,6 +25,53 @@ class ProductsController extends Controller
         return redirect()->action('Chaofa\ProductsController@create_tyre');
     }
 
+    public function add_tyre(Request $request) {
+        $id = $request->get('id');
+        $amountadd = $request->get('amount');
+        $amount = Tyrechaofa::findOrFail($id);
+        $amount = Tyrechaofa::where('id',$id)->value('amount');
+        $amount += $amountadd;
+        $amount = Tyrechaofa::where('id',$id)->update(['amount' =>  $amount]);
+        return back();
+    }
+
+    public function delete_tyre(Request $request) {
+        $id = $request->get('id');
+        $amountdelete = $request->get('amount');
+        $amount = Tyrechaofa::findOrFail($id);
+        $amount = Tyrechaofa::where('id',$id)->value('amount');
+        $amount -= $amountdelete;
+        $amount = Tyrechaofa::where('id',$id)->update(['amount' =>  $amount]);
+        return back();
+    }
+
+    public function search_add_tyre(Request $request) {
+        $search = $request->get('search');
+        $id = $request->get('id');
+        $amountadd = $request->get('amount');
+        $amount = Tyrechaofa::findOrFail($id);
+        $amount = Tyrechaofa::where('id',$id)->value('amount');
+        $amount += $amountadd;
+        $amount = Tyrechaofa::where('id',$id)->update(['amount' =>  $amount]);
+        return redirect('/master/chaofa/search?search='.$search);
+    }
+
+    public function search_delete_tyre(Request $request) {
+        $search = $request->get('search');
+        $id = $request->get('id');
+        $amountdelete = $request->get('amount');
+        $amount = Tyrechaofa::findOrFail($id);
+        $amount = Tyrechaofa::where('id',$id)->value('amount');
+        $amount -= $amountdelete;
+        $amount = Tyrechaofa::where('id',$id)->update(['amount' =>  $amount]);
+        return redirect('/master/chaofa/search?search='.$search);
+    }
+
+    public function posttyredelete($id){
+        Tyrechaofa::destroy($id);
+        return back();
+    }
+
     public function create_max() {
         return view('/master/chaofa/master_create_max');
     }
@@ -51,20 +98,21 @@ class ProductsController extends Controller
 
     public function product_tyre(Request $request) {
         $NUM_PAGE = 10;
-        $michelins = Tyrechaofa::where('category',"MICHELIN")->get();
-        $goodrichs = Tyrechaofa::where('category','=',"BF Goodrich")->get();
-        $otanis = Tyrechaofa::where('category','=',"OTANI")->get();
-        $maxxiss = Tyrechaofa::where('category','=',"MAXXIS")->get();
-        $yokohamas = Tyrechaofa::where('category','=',"YOKOHAMA")->get();
-        $bridgestones = Tyrechaofa::where('category','=',"BRIDGSTONE")->get();
-        $toyos = Tyrechaofa::where('category','=',"TOYO")->get();
-        $nittos = Tyrechaofa::where('category','=',"NITTO")->get();
-        $kumhos = Tyrechaofa::where('category','=',"KUMHO")->get();
-        $pirellis = Tyrechaofa::where('category','=',"PIRELLI")->get();
-        $goodyears = Tyrechaofa::where('category','=',"GOODYEAR")->get();
-        $kendas = Tyrechaofa::where('category','=',"KENDA")->get();
-        $raidens = Tyrechaofa::where('category','=',"RAIDEN")->get(); 
-        $others = Tyrechaofa::where('category','=',"อื่นๆ")->get();
+        $michelins = Tyrechaofa::where('category',"MICHELIN")->OrderBy('size','asc')->get();
+        $goodrichs = Tyrechaofa::where('category','=',"BF Goodrich")->OrderBy('size','asc')->get();
+        $otanis = Tyrechaofa::where('category','=',"OTANI")->OrderBy('size','asc')->get();
+        $maxxiss = Tyrechaofa::where('category','=',"MAXXIS")->OrderBy('size','asc')->get();
+        $yokohamas = Tyrechaofa::where('category','=',"YOKOHAMA")->OrderBy('size','asc')->get();
+        $bridgestones = Tyrechaofa::where('category','=',"BRIDGSTONE")->OrderBy('size','asc')->get();
+        $toyos = Tyrechaofa::where('category','=',"TOYO")->OrderBy('size','asc')->get();
+        $nittos = Tyrechaofa::where('category','=',"NITTO")->OrderBy('size','asc')->get();
+        $kumhos = Tyrechaofa::where('category','=',"KUMHO")->OrderBy('size','asc')->get();
+        $pirellis = Tyrechaofa::where('category','=',"PIRELLI")->OrderBy('size','asc')->get();
+        $goodyears = Tyrechaofa::where('category','=',"GOODYEAR")->OrderBy('size','asc')->get();
+        $kendas = Tyrechaofa::where('category','=',"KENDA")->OrderBy('size','asc')->get();
+        $raidens = Tyrechaofa::where('category','=',"RAIDEN")->OrderBy('size','asc')->get();
+        $continentals = Tyrechaofa::where('category','=',"CONTINENTAL")->OrderBy('size','asc')->get(); 
+        $others = Tyrechaofa::where('category','=',"อื่นๆ")->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('/master/chaofa/master_tyre')->with('page',$page)
@@ -82,6 +130,7 @@ class ProductsController extends Controller
                                                  ->with('goodyears',$goodyears)
                                                  ->with('kendas',$kendas)
                                                  ->with('raidens',$raidens)
+                                                 ->with('continentals',$continentals)
                                                  ->with('others',$others);
     }
 

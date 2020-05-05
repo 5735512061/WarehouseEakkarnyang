@@ -14,20 +14,21 @@ class ProductsController extends Controller
 
     public function product_tyre(Request $request) {
         $NUM_PAGE = 10;
-        $michelins = Tyrethalang::where('category',"MICHELIN")->get();
-        $goodrichs = Tyrethalang::where('category','=',"BF Goodrich")->get();
-        $otanis = Tyrethalang::where('category','=',"OTANI")->get();
-        $maxxiss = Tyrethalang::where('category','=',"MAXXIS")->get();
-        $yokohamas = Tyrethalang::where('category','=',"YOKOHAMA")->get();
-        $bridgestones = Tyrethalang::where('category','=',"BRIDGSTONE")->get();
-        $toyos = Tyrethalang::where('category','=',"TOYO")->get();
-        $nittos = Tyrethalang::where('category','=',"NITTO")->get();
-        $kumhos = Tyrethalang::where('category','=',"KUMHO")->get();
-        $pirellis = Tyrethalang::where('category','=',"PIRELLI")->get();
-        $goodyears = Tyrethalang::where('category','=',"GOODYEAR")->get();
-        $kendas = Tyrethalang::where('category','=',"KENDA")->get();
-        $raidens = Tyrethalang::where('category','=',"RAIDEN")->get(); 
-        $others = Tyrethalang::where('category','=',"อื่นๆ")->get();
+        $michelins = Tyrethalang::where('category',"MICHELIN")->OrderBy('size','asc')->get();
+        $goodrichs = Tyrethalang::where('category','=',"BF Goodrich")->OrderBy('size','asc')->get();
+        $otanis = Tyrethalang::where('category','=',"OTANI")->OrderBy('size','asc')->get();
+        $maxxiss = Tyrethalang::where('category','=',"MAXXIS")->OrderBy('size','asc')->get();
+        $yokohamas = Tyrethalang::where('category','=',"YOKOHAMA")->OrderBy('size','asc')->get();
+        $bridgestones = Tyrethalang::where('category','=',"BRIDGSTONE")->OrderBy('size','asc')->get();
+        $toyos = Tyrethalang::where('category','=',"TOYO")->OrderBy('size','asc')->get();
+        $nittos = Tyrethalang::where('category','=',"NITTO")->OrderBy('size','asc')->get();
+        $kumhos = Tyrethalang::where('category','=',"KUMHO")->OrderBy('size','asc')->get();
+        $pirellis = Tyrethalang::where('category','=',"PIRELLI")->OrderBy('size','asc')->get();
+        $goodyears = Tyrethalang::where('category','=',"GOODYEAR")->OrderBy('size','asc')->get();
+        $kendas = Tyrethalang::where('category','=',"KENDA")->OrderBy('size','asc')->get();
+        $raidens = Tyrethalang::where('category','=',"RAIDEN")->OrderBy('size','asc')->get(); 
+        $continentals = Tyrethalang::where('category','=',"CONTINENTAL")->OrderBy('size','asc')->get();
+        $others = Tyrethalang::where('category','=',"อื่นๆ")->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('/admin/thalang/admin_tyre')->with('page',$page)
@@ -45,6 +46,7 @@ class ProductsController extends Controller
                                                 ->with('goodyears',$goodyears)
                                                 ->with('kendas',$kendas)
                                                 ->with('raidens',$raidens)
+                                                ->with('continentals',$continentals)
                                                 ->with('others',$others);
     }
 
@@ -62,6 +64,49 @@ class ProductsController extends Controller
         $tyre->save();
         return redirect()->action('AdminThalang\ProductsController@product_tyre');
     }
+
+    public function add_tyre(Request $request) {
+        $id = $request->get('id');
+        $amountadd = $request->get('amount');
+        $amount = Tyrethalang::findOrFail($id);
+        $amount = Tyrethalang::where('id',$id)->value('amount');
+        $amount += $amountadd;
+        $amount = Tyrethalang::where('id',$id)->update(['amount' =>  $amount]);
+        return back();
+    }
+
+    public function delete_tyre(Request $request) {
+        $id = $request->get('id');
+        $amountdelete = $request->get('amount');
+        $amount = Tyrethalang::findOrFail($id);
+        $amount = Tyrethalang::where('id',$id)->value('amount');
+        $amount -= $amountdelete;
+        $amount = Tyrethalang::where('id',$id)->update(['amount' =>  $amount]);
+        return back();
+    }
+
+    public function search_add_tyre(Request $request) {
+        $search = $request->get('search');
+        $id = $request->get('id');
+        $amountadd = $request->get('amount');
+        $amount = Tyrethalang::findOrFail($id);
+        $amount = Tyrethalang::where('id',$id)->value('amount');
+        $amount += $amountadd;
+        $amount = Tyrethalang::where('id',$id)->update(['amount' =>  $amount]);
+        return redirect('/admin/thalang/search?search='.$search);
+    }
+
+    public function search_delete_tyre(Request $request) {
+        $search = $request->get('search');
+        $id = $request->get('id');
+        $amountdelete = $request->get('amount');
+        $amount = Tyrethalang::findOrFail($id);
+        $amount = Tyrethalang::where('id',$id)->value('amount');
+        $amount -= $amountdelete;
+        $amount = Tyrethalang::where('id',$id)->update(['amount' =>  $amount]);
+        return redirect('/admin/thalang/search?search='.$search);
+    }
+
 
     public function product_max() {
         return view('/admin/thalang/admin_max');

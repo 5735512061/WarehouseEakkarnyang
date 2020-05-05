@@ -11,6 +11,7 @@ use App\Tyrebypart;
 use App\Tyrethaiwatsadu;
 use App\Tyrechaofa;
 use App\Tyrethalang;
+use App\Tyrephangnga;
 
 
 class CustomerController extends Controller
@@ -23,20 +24,21 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $NUM_PAGE = 10;
-        $michelins = Tyreproduct::where('category',"MICHELIN")->get();
-        $goodrichs = Tyreproduct::where('category','=',"BF Goodrich")->get();
-        $otanis = Tyreproduct::where('category','=',"OTANI")->get();
-        $maxxiss = Tyreproduct::where('category','=',"MAXXIS")->get();
-        $yokohamas = Tyreproduct::where('category','=',"YOKOHAMA")->get();
-        $bridgestones = Tyreproduct::where('category','=',"BRIDGSTONE")->get();
-        $toyos = Tyreproduct::where('category','=',"TOYO")->get();
-        $nittos = Tyreproduct::where('category','=',"NITTO")->get();
-        $kumhos = Tyreproduct::where('category','=',"KUMHO")->get();
-        $pirellis = Tyreproduct::where('category','=',"PIRELLI")->get();
-        $goodyears = Tyreproduct::where('category','=',"GOODYEAR")->get();
-        $kendas = Tyreproduct::where('category','=',"KENDA")->get();
-        $raidens = Tyreproduct::where('category','=',"RAIDEN")->get(); 
-        $others = Tyreproduct::where('category','=',"อื่นๆ")->get();
+        $michelins = Tyreproduct::where('category',"MICHELIN")->OrderBy('size','asc')->get();
+        $goodrichs = Tyreproduct::where('category','=',"BF Goodrich")->OrderBy('size','asc')->get();
+        $otanis = Tyreproduct::where('category','=',"OTANI")->OrderBy('size','asc')->get();
+        $maxxiss = Tyreproduct::where('category','=',"MAXXIS")->OrderBy('size','asc')->get();
+        $yokohamas = Tyreproduct::where('category','=',"YOKOHAMA")->OrderBy('size','asc')->get();
+        $bridgestones = Tyreproduct::where('category','=',"BRIDGSTONE")->OrderBy('size','asc')->get();
+        $toyos = Tyreproduct::where('category','=',"TOYO")->OrderBy('size','asc')->get();
+        $nittos = Tyreproduct::where('category','=',"NITTO")->OrderBy('size','asc')->get();
+        $kumhos = Tyreproduct::where('category','=',"KUMHO")->OrderBy('size','asc')->get();
+        $pirellis = Tyreproduct::where('category','=',"PIRELLI")->OrderBy('size','asc')->get();
+        $goodyears = Tyreproduct::where('category','=',"GOODYEAR")->OrderBy('size','asc')->get();
+        $kendas = Tyreproduct::where('category','=',"KENDA")->OrderBy('size','asc')->get();
+        $raidens = Tyreproduct::where('category','=',"RAIDEN")->OrderBy('size','asc')->get(); 
+        $continentals = Tyreproduct::where('category','=',"CONTINENTAL")->OrderBy('size','asc')->get();
+        $others = Tyreproduct::where('category','=',"อื่นๆ")->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
     	return view('/customer/khokkloi/customer_tyre')->with('page',$page)
@@ -54,6 +56,7 @@ class CustomerController extends Controller
                                                        ->with('goodyears',$goodyears)
                                                        ->with('kendas',$kendas)
                                                        ->with('raidens',$raidens)
+                                                       ->with('continentals',$continentals)
                                                        ->with('others',$others);
     }
 
@@ -82,10 +85,23 @@ class CustomerController extends Controller
         $NUM_PAGE = 10;
         $search = $request->get('search');
         $searchs = Tyreproduct::where('size','like','%'.$search.'%')
-                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->get();
+                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
-        return view('/customer/customer_search')->with('searchs',$searchs)
+        return view('/customer/khokkloi/customer_search')->with('searchs',$searchs)
+                                                ->with('page',$page)
+                                                ->with('NUM_PAGE',$NUM_PAGE);
+    }
+
+    public function search_yokohama(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = Tyreproduct::where('size','like','%'.$search.'%')
+                              ->where('category',"YOKOHAMA")
+                              ->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/customer/khokkloi/customer_search')->with('searchs',$searchs)
                                                 ->with('page',$page)
                                                 ->with('NUM_PAGE',$NUM_PAGE);
     }
@@ -94,10 +110,10 @@ class CustomerController extends Controller
         $NUM_PAGE = 10;
         $search = $request->get('search');
         $searchs = Tyrebypart::where('size','like','%'.$search.'%')
-                             ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->get();
+                             ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
-        return view('/customer/customer_search')->with('searchs',$searchs)
+        return view('/customer/bypart/customer_search')->with('searchs',$searchs)
                                                 ->with('page',$page)
                                                 ->with('NUM_PAGE',$NUM_PAGE);
     }
@@ -106,10 +122,10 @@ class CustomerController extends Controller
         $NUM_PAGE = 10;
         $search = $request->get('search');
         $searchs = Tyrethaiwatsadu::where('size','like','%'.$search.'%')
-                                  ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->get();
+                                  ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
-        return view('/customer/customer_search')->with('searchs',$searchs)
+        return view('/customer/thaiwatsadu/customer_search')->with('searchs',$searchs)
                                                 ->with('page',$page)
                                                 ->with('NUM_PAGE',$NUM_PAGE);
     }
@@ -118,10 +134,10 @@ class CustomerController extends Controller
         $NUM_PAGE = 10;
         $search = $request->get('search');
         $searchs = Tyrechaofa::where('size','like','%'.$search.'%')
-                             ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->get();
+                             ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
-        return view('/customer/customer_search')->with('searchs',$searchs)
+        return view('/customer/chaofa/customer_search')->with('searchs',$searchs)
                                                 ->with('page',$page)
                                                 ->with('NUM_PAGE',$NUM_PAGE);
     }
@@ -130,12 +146,24 @@ class CustomerController extends Controller
         $NUM_PAGE = 10;
         $search = $request->get('search');
         $searchs = Tyrethalang::where('size','like','%'.$search.'%')
-                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->get();
+                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
-        return view('/customer/customer_search')->with('searchs',$searchs)
+        return view('/customer/thalang/customer_search')->with('searchs',$searchs)
                                                 ->with('page',$page)
                                                 ->with('NUM_PAGE',$NUM_PAGE);
+    }
+
+    public function search_phangnga(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = Tyrephangnga::where('size','like','%'.$search.'%')
+                               ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/customer/phangnga/customer_search')->with('searchs',$searchs)
+                                                         ->with('page',$page)
+                                                         ->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function showChangePasswordForm(){

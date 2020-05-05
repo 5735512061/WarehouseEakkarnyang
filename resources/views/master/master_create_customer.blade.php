@@ -38,6 +38,15 @@
 							            	<input class="form-control" name="tel" value="{{old ('tel')}}" type="text">
 							            </p>
 
+							            <p>
+							                <label>บทบาท
+												@if ($errors->has('role'))
+								 				<span class="text-danger">({{ $errors->first('role') }})</span>
+								 				@endif
+											</label>
+							               <input class="form-control" name="role" value="{{old ('role')}}" type="text" >
+							          	</p>
+
 							          	<p>
 					               			<label>สถานะ</label>
 											<select class="form-control" name="status">

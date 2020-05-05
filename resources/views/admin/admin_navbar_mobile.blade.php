@@ -19,8 +19,8 @@
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-dot-circle-o"></i>สินค้า</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <i class="fas fa-dot-circle-o"></i>คลังสินค้า</a>
+                            <ul class="list-unstyled js-sub-list">
                                 <li>
                                     <a href="{{url('/admin/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
                                 </li>
@@ -35,6 +35,9 @@
                                 </li>
                                 <li>
                                     <a href="{{url('/admin/thalang/warehouse')}}">สาขาถลาง</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/admin/phangnga/warehouse')}}">สาขาเมืองพังงา</a>
                                 </li>
                             </ul>
                         </li>
@@ -88,8 +91,8 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-dot-circle-o"></i>สินค้า</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <i class="fas fa-dot-circle-o"></i>คลังสินค้า</a>
+                            <ul class="list-unstyled js-sub-list">
                                 <li>
                                     <a href="{{url('/admin/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
                                 </li>
@@ -104,6 +107,9 @@
                                 </li>
                                 <li>
                                     <a href="{{url('/admin/thalang/warehouse')}}">สาขาถลาง</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/admin/phangnga/warehouse')}}">สาขาเมืองพังงา</a>
                                 </li>
                             </ul>
                         </li>

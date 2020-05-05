@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+        <div class="col-md-9">
+            <div class="card" style="margin-bottom: 20px;">
                 <div class="card-header">{{ __('เข้าสู่ระบบ') }}</div>
 
                 <div class="card-body">
@@ -39,21 +39,43 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('เข้าสู่ระบบ') }}
-                                </button>
+                                <div class="form-check">
+                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('ลืมรหัสผ่าน ?') }}
-                                </a>
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('remember me') }}
+                                    </label>
+                                    <button type="submit" class="btn btn-primary">
+                                    {{ __('เข้าสู่ระบบ') }}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+            <h5 style="color: #ffffff;"> **สำหรับร้านยางที่ต้องการยางราคาส่ง เฉพาะพื้นที่จังหวัดภูเก็ต และพังงา สามารถติดต่อได้ที่ 081-732-3288</h5>
+            <h5 style="color: yellow; text-align: center;">( ไม่ต้องสต็อกยางก็มียางขาย ให้เอกการยางสต็อกยางแทนคุณ )</h5>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="{{asset('/js/jquery.cookie.js')}}"></script>
+<script type="text/javascript" src="{{asset('/js/jQuery-2.2.0.min.js')}}"></script>
+
+<script>
+    $(document).ready(function() {
+        var remember = $.cookie('remember');
+        if (remember == 'true')
+    {
+        var customer_name = $.cookie('customer_name');
+        var password = $.cookie('password');
+        // autofill the fields
+        $(#customer_name).val(customer_name);
+        $(#password).val(password);
+        $(#remember).prop("checked",true);
+    }
+});
+</script>
 @endsection

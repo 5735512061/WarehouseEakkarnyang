@@ -50,6 +50,12 @@
                                                     </td>
                                                     <td>
                                                         <div class="table-data__info">
+                                                            <?php 
+                                                                $balance = str_replace(',','',$value->cost); 
+                                                                $balance = floatval($balance) - (0.1 * floatval($balance));
+                                                                $balance = number_format($balance);
+                                                            ?>
+                                                            {{-- <h6>{{$balance}}</h6> --}}
                                                             <h6>{{$value->cost}}</h6>
                                                         </div>
                                                     </td>

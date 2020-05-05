@@ -41,7 +41,7 @@
                                                                 <span class="text-danger">({{ $errors->first('admin_name') }})</span>
                                                                 @endif
                                                             </label>
-                                                            <input class="form-control" name="admin_name" value="{{Auth::user()->admin_name}}" type="text">
+                                                            <input class="form-control" name="admin_name" value="{{Auth::user()->admin_name}}" type="text" disabled="disabled">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>สาขา

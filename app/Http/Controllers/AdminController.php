@@ -12,6 +12,7 @@ use App\Tyrebypart;
 use App\Tyrethaiwatsadu;
 use App\Tyrechaofa;
 use App\Tyrethalang;
+use App\Tyrephangnga;
 
 class AdminController extends Controller
 {
@@ -23,20 +24,21 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $NUM_PAGE = 10;
-        $michelins = Tyreproduct::where('category',"MICHELIN")->get();
-        $goodrichs = Tyreproduct::where('category','=',"BF Goodrich")->get();
-        $otanis = Tyreproduct::where('category','=',"OTANI")->get();
-        $maxxiss = Tyreproduct::where('category','=',"MAXXIS")->get();
-        $yokohamas = Tyreproduct::where('category','=',"YOKOHAMA")->get();
-        $bridgestones = Tyreproduct::where('category','=',"BRIDGSTONE")->get();
-        $toyos = Tyreproduct::where('category','=',"TOYO")->get();
-        $nittos = Tyreproduct::where('category','=',"NITTO")->get();
-        $kumhos = Tyreproduct::where('category','=',"KUMHO")->get();
-        $pirellis = Tyreproduct::where('category','=',"PIRELLI")->get();
-        $goodyears = Tyreproduct::where('category','=',"GOODYEAR")->get();
-        $kendas = Tyreproduct::where('category','=',"KENDA")->get();
-        $raidens = Tyreproduct::where('category','=',"RAIDEN")->get(); 
-        $others = Tyreproduct::where('category','=',"อื่นๆ")->get();
+        $michelins = Tyreproduct::where('category',"MICHELIN")->OrderBy('size','asc')->get();
+        $goodrichs = Tyreproduct::where('category','=',"BF Goodrich")->OrderBy('size','asc')->get();
+        $otanis = Tyreproduct::where('category','=',"OTANI")->OrderBy('size','asc')->get();
+        $maxxiss = Tyreproduct::where('category','=',"MAXXIS")->OrderBy('size','asc')->get();
+        $yokohamas = Tyreproduct::where('category','=',"YOKOHAMA")->OrderBy('size','asc')->get();
+        $bridgestones = Tyreproduct::where('category','=',"BRIDGSTONE")->OrderBy('size','asc')->get();
+        $toyos = Tyreproduct::where('category','=',"TOYO")->OrderBy('size','asc')->get();
+        $nittos = Tyreproduct::where('category','=',"NITTO")->OrderBy('size','asc')->get();
+        $kumhos = Tyreproduct::where('category','=',"KUMHO")->OrderBy('size','asc')->get();
+        $pirellis = Tyreproduct::where('category','=',"PIRELLI")->OrderBy('size','asc')->get();
+        $goodyears = Tyreproduct::where('category','=',"GOODYEAR")->OrderBy('size','asc')->get();
+        $kendas = Tyreproduct::where('category','=',"KENDA")->OrderBy('size','asc')->get();
+        $raidens = Tyreproduct::where('category','=',"RAIDEN")->OrderBy('size','asc')->get(); 
+        $continentals = Tyreproduct::where('category','=',"CONTINENTAL")->OrderBy('size','asc')->get();
+        $others = Tyreproduct::where('category','=',"อื่นๆ")->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
     	return view('/admin/khokkloi/admin_tyre')->with('page',$page)
@@ -54,6 +56,7 @@ class AdminController extends Controller
                                                ->with('goodyears',$goodyears)
                                                ->with('kendas',$kendas)
                                                ->with('raidens',$raidens)
+                                               ->with('continentals',$continentals)
                                                ->with('others',$others);
     }
 
@@ -82,60 +85,150 @@ class AdminController extends Controller
         $NUM_PAGE = 10;
         $search = $request->get('search');
         $searchs = Tyreproduct::where('size','like','%'.$search.'%')
-                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->get();
+                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('/admin/khokkloi/admin_search')->with('searchs',$searchs)
-                                          ->with('page',$page)
-                                          ->with('NUM_PAGE',$NUM_PAGE);
+                                                   ->with('search_old',$search)
+                                                   ->with('page',$page)
+                                                   ->with('NUM_PAGE',$NUM_PAGE);
+    }
+    public function search_khokkloi_get(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = Tyreproduct::where('size','like','%'.$search.'%')
+                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/admin/khokkloi/admin_search')->with('searchs',$searchs)
+                                                   ->with('search_old',$search)
+                                                   ->with('page',$page)
+                                                   ->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function search_bypart(Request $request) {
         $NUM_PAGE = 10;
         $search = $request->get('search');
         $searchs = Tyrebypart::where('size','like','%'.$search.'%')
-                             ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->get();
+                             ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('/admin/bypart/admin_search')->with('searchs',$searchs)
-                                          ->with('page',$page)
-                                          ->with('NUM_PAGE',$NUM_PAGE);
+                                                 ->with('search_old',$search)
+                                                 ->with('page',$page)
+                                                 ->with('NUM_PAGE',$NUM_PAGE);
+    }
+    public function search_bypart_get(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = Tyrebypart::where('size','like','%'.$search.'%')
+                             ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/admin/bypart/admin_search')->with('searchs',$searchs)
+                                                 ->with('search_old',$search)
+                                                 ->with('page',$page)
+                                                 ->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function search_thaiwatsadu(Request $request) {
         $NUM_PAGE = 10;
         $search = $request->get('search');
         $searchs = Tyrethaiwatsadu::where('size','like','%'.$search.'%')
-                                  ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->get();
+                                  ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('/admin/thaiwatsadu/admin_search')->with('searchs',$searchs)
-                                          ->with('page',$page)
-                                          ->with('NUM_PAGE',$NUM_PAGE);
+                                                      ->with('search_old',$search)
+                                                      ->with('page',$page)
+                                                      ->with('NUM_PAGE',$NUM_PAGE);
+    }
+    public function search_thaiwatsadu_get(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = Tyrethaiwatsadu::where('size','like','%'.$search.'%')
+                                  ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/admin/thaiwatsadu/admin_search')->with('searchs',$searchs)
+                                                      ->with('search_old',$search)
+                                                      ->with('page',$page)
+                                                      ->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function search_chaofa(Request $request) {
         $NUM_PAGE = 10;
         $search = $request->get('search');
         $searchs = Tyrechaofa::where('size','like','%'.$search.'%')
-                             ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->get();
+                             ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('/admin/chaofa/admin_search')->with('searchs',$searchs)
-                                          ->with('page',$page)
-                                          ->with('NUM_PAGE',$NUM_PAGE);
+                                                 ->with('search_old',$search)
+                                                 ->with('page',$page)
+                                                 ->with('NUM_PAGE',$NUM_PAGE);
+    }
+    public function search_chaofa_get(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = Tyrechaofa::where('size','like','%'.$search.'%')
+                             ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/admin/chaofa/admin_search')->with('searchs',$searchs)
+                                                 ->with('search_old',$search)
+                                                 ->with('page',$page)
+                                                 ->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function search_thalang(Request $request) {
         $NUM_PAGE = 10;
         $search = $request->get('search');
         $searchs = Tyrethalang::where('size','like','%'.$search.'%')
-                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->get();
+                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('/admin/thalang/admin_search')->with('searchs',$searchs)
-                                          ->with('page',$page)
-                                          ->with('NUM_PAGE',$NUM_PAGE);
+                                                  ->with('search_old',$search)
+                                                  ->with('page',$page)
+                                                  ->with('NUM_PAGE',$NUM_PAGE);
+    }
+    public function search_thalang_get(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = Tyrethalang::where('size','like','%'.$search.'%')
+                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/admin/thalang/admin_search')->with('searchs',$searchs)
+                                                  ->with('search_old',$search)
+                                                  ->with('page',$page)
+                                                  ->with('NUM_PAGE',$NUM_PAGE);
+    }
+
+    public function search_phangnga(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = Tyrephangnga::where('size','like','%'.$search.'%')
+                               ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/admin/phangnga/admin_search')->with('searchs',$searchs)
+                                                   ->with('search_old',$search)
+                                                   ->with('page',$page)
+                                                   ->with('NUM_PAGE',$NUM_PAGE);
+    }
+    public function search_phangnga_get(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = Tyrephangnga::where('size','like','%'.$search.'%')
+                               ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/admin/phangnga/admin_search')->with('searchs',$searchs)
+                                                   ->with('search_old',$search)
+                                                   ->with('page',$page)
+                                                   ->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function showChangePasswordForm(){
