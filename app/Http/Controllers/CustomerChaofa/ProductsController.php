@@ -8,6 +8,11 @@ use App\Tyrechaofa;
 
 class ProductsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:customer');
+    }
+    
     public function product_tyre(Request $request) {
         $NUM_PAGE = 10;
         $michelins = Tyrechaofa::where('category',"MICHELIN")->OrderBy('size','asc')->get();
