@@ -7,6 +7,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Request;
 use Response;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Session\TokenMismatchException;
 
 class Handler extends ExceptionHandler
 {
@@ -82,6 +83,7 @@ class Handler extends ExceptionHandler
 
     protected function prepareException(Exception $e)
     {
+        $guard = array_get($exception->guards(),0);
         if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         } elseif ($e instanceof AuthorizationException) {
@@ -101,7 +103,7 @@ class Handler extends ExceptionHandler
                   $login = 'login';
                   break;
               }
-              return redirect()->guest(route($login));
+              return redirect()->route($login);
         }
 
         return $e;
