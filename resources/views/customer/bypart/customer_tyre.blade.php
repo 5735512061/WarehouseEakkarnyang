@@ -67,7 +67,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -134,7 +134,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -165,7 +165,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -232,7 +232,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -263,7 +263,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -336,7 +336,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -366,7 +366,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -433,7 +433,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -463,7 +463,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -530,7 +530,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -560,7 +560,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -627,7 +627,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -657,7 +657,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -724,7 +724,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -754,7 +754,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -821,7 +821,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -851,7 +851,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -918,7 +918,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -948,7 +948,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -1015,7 +1015,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1045,7 +1045,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -1112,7 +1112,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1142,7 +1142,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -1209,7 +1209,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1239,7 +1239,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -1306,7 +1306,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1336,7 +1336,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             <form  method="POST" role="form">
@@ -1403,7 +1403,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>

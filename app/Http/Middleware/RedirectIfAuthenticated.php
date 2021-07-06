@@ -16,7 +16,7 @@ class RedirectIfAuthenticated
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
-    {
+    {dd($guard);
         switch ($guard) {
             case 'admin':
               if (Auth::guard($guard)->check()) {

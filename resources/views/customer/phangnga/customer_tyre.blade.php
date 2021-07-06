@@ -67,7 +67,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($michelins as $michelin => $value)
@@ -134,7 +134,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -163,7 +163,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($goodrichs as $goodrich => $value)
@@ -228,7 +228,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -257,7 +257,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($otanis as $otani => $value)
@@ -328,7 +328,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -357,7 +357,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($yokohamas as $yokohama => $value)
@@ -422,7 +422,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -451,7 +451,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($bridgestones as $bridgestone => $value)
@@ -516,7 +516,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -545,7 +545,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($maxxiss as $maxxis => $value)
@@ -610,7 +610,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -639,7 +639,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($toyos as $toyo => $value)
@@ -704,7 +704,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -733,7 +733,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($nittos as $nitto => $value)
@@ -798,7 +798,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -827,7 +827,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($pirellis as $pirelli => $value)
@@ -892,7 +892,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -921,7 +921,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($goodyears as $goodyear => $value)
@@ -986,7 +986,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1015,7 +1015,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($kumhos as $kumho => $value)
@@ -1080,7 +1080,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1109,7 +1109,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($raidens as $raiden => $value)
@@ -1174,7 +1174,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1203,7 +1203,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($continentals as $continental => $value)
@@ -1268,7 +1268,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -1297,7 +1297,7 @@
                                                     <td>ราคาต้นทุน</td>
                                                     <td>จำนวน</td>
                                                     <td>ปีที่ผลิต</td>
-                                                    <td>โปรโมชั่น</td>
+                                                    <td>หมายเหตุ</td>
                                                 </tr>
                                             </thead>
                                             @foreach($others as $other => $value)
@@ -1362,7 +1362,7 @@
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->promotion}}</h6>
+                                                            <h6>{{$value->comment}}</h6>
                                                         </div>
                                                     </td>
                                                 </tr>
