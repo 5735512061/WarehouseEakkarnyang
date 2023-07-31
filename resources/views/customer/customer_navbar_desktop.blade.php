@@ -70,16 +70,16 @@
                                                     <span class="email">{{ auth('customer')->user()->branch }}</span>
                                                 </div>
                                             </div>
-                                            <div class="account-dropdown__body">
+                                            {{-- <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="{{url('/customer/profile')}}">
                                                         <i class="zmdi zmdi-account"></i>แก้ไขบัญชีผู้ใช้</a>
                                                 </div>
-                                                <!-- <div class="account-dropdown__item">
+                                                <div class="account-dropdown__item">
                                                     <a href="{{url('/customer/changePassword')}}">
                                                         <i class="zmdi zmdi-settings"></i>เปลี่ยนรหัสผ่าน</a>
-                                                </div> -->
-                                            </div>
+                                                </div>
+                                            </div> --}}
                                             <div class="account-dropdown__footer">
                                                 <a class="dropdown-item" href="{{ route('customer.logout') }}"
                                                     onclick="event.preventDefault();

@@ -13,6 +13,7 @@ use App\Tyrethaiwatsadu;
 use App\Tyrechaofa;
 use App\Tyrethalang;
 use App\Tyrephangnga;
+use App\TyreStockMain;
 
 class AdminController extends Controller
 {
@@ -79,6 +80,31 @@ class AdminController extends Controller
                 $admin->save();
             }
         return back();
+    }
+
+    public function search_stock_main(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = TyreStockMain::where('size','like','%'.$search.'%')
+                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/admin/stock_main/admin_search')->with('searchs',$searchs)
+                                                   ->with('search_old',$search)
+                                                   ->with('page',$page)
+                                                   ->with('NUM_PAGE',$NUM_PAGE);
+    }
+    public function search_stock_main_get(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = TyreStockMain::where('size','like','%'.$search.'%')
+                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/admin/stock_main/admin_search')->with('searchs',$searchs)
+                                                   ->with('search_old',$search)
+                                                   ->with('page',$page)
+                                                   ->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function search_khokkloi(Request $request) {

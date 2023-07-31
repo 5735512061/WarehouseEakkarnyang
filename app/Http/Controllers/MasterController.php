@@ -14,6 +14,7 @@ use App\Tyrethaiwatsadu;
 use App\Tyrechaofa;
 use App\Tyrethalang;
 use App\Tyrephangnga;
+use App\TyreStockMain;
 use Validator;
 use Redirect;
 
@@ -137,6 +138,31 @@ class MasterController extends Controller
                 $master->save();
             }
         return back();
+    }
+
+    public function search_stock_main(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = TyreStockMain::where('size','like','%'.$search.'%')
+                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/master/stock_main/master_search')->with('searchs',$searchs)
+                                                     ->with('search_old',$search)
+                                                     ->with('page',$page)
+                                                     ->with('NUM_PAGE',$NUM_PAGE);
+    }
+    public function search_stock_main_get(Request $request) {
+        $NUM_PAGE = 10;
+        $search = $request->get('search');
+        $searchs = TyreStockMain::where('size','like','%'.$search.'%')
+                              ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/master/stock_main/master_search')->with('searchs',$searchs)
+                                                       ->with('page',$page)
+                                                       ->with('search_old',$search)
+                                                       ->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function search_khokkloi(Request $request) {

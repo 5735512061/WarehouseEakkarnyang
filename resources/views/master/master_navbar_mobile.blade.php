@@ -3,7 +3,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="{{url('/master/khokkloi/tyre')}}">
+                        <a class="logo" href="#">
                             <img src="{{ asset('/template/images/icon/logo.jpg')}}" alt="เอกการยาง" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -27,7 +27,10 @@
                             @endif
                                 @if(Auth::user()->role == "1")
                                 <li>
-                                    <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    <a href="{{url('/master/stock-main/warehouse')}}">คลังสินค้าหลัก</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย</a>
                                 </li>
                                 <li>
                                     <a href="{{url('/master/bypart/warehouse')}}">สาขาบายพาส</a>
@@ -46,7 +49,10 @@
                                 </li>
                                 @else
                                 <li>
-                                    <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    <a href="{{url('/master/stock-main/warehouse')}}">คลังสินค้าหลัก</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย</a>
                                 </li>
                                 <li>
                                     <a href="{{url('/master/bypart/warehouse')}}">สาขาบายพาส</a>
@@ -153,7 +159,10 @@
                             @endif
                                 @if(Auth::user()->role == "1")
                                 <li>
-                                    <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    <a href="{{url('/master/stock-main/warehouse')}}">คลังสินค้าหลัก</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย</a>
                                 </li>
                                 <li>
                                     <a href="{{url('/master/bypart/warehouse')}}">สาขาบายพาส</a>
@@ -172,7 +181,10 @@
                                 </li>
                                 @else
                                 <li>
-                                    <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    <a href="{{url('/master/stock-main/warehouse')}}">คลังสินค้าหลัก</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/khokkloi/warehouse')}}">สาขาโคกกลอย</a>
                                 </li>
                                 <li>
                                     <a href="{{url('/master/bypart/warehouse')}}">สาขาบายพาส</a>
@@ -250,6 +262,26 @@
                                 </li>
                                 <li>
                                     <a href="{{url('/master/role')}}">สิทธิ์การเข้าใช้งาน</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="zmdi zmdi-account"></i>ข้อมูลผู้ใช้งาน</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="{{url('/master/profile')}}">แก้ไขบัญชีผู้ใช้</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/master/changePassword')}}">เปลี่ยนรหัสผ่าน</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">ออกจากระบบ</a>
+                                    <form id="logout-form" action="{{ 'App\User' == Auth::getProvider()->getModel() ? route('logout') : route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </li>
                             </ul>
                         </li>

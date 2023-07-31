@@ -42,14 +42,14 @@
                                                     <input type="text" id="size" name="size" value="{{$tyre->size}}" class="form-control" disabled="disabled">
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            {{-- <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">ราคาต้นทุน</label>
+                                                    <label for="text-input" class=" form-control-label">ราคาต้นทุนส่ง</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" id="cost" name="cost" value="{{$tyre->cost}}" class="form-control" disabled="disabled"> 
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">จำนวนสินค้า</label>
@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">ปีที่ผลิต</label>
+                                                    <label for="text-input" class=" form-control-label">ปีผลิต</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="text" id="year" name="year" value="{{$tyre->year}}" class="form-control">
@@ -68,10 +68,18 @@
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">หมายเหตุ</label>
+                                                    <label for="text-input" class=" form-control-label">สัปดาห์ยาง (DOT)</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="comment" name="comment" value="{{$tyre->comment}}" class="form-control">
+                                                    <input type="text" id="dot" name="dot" value="{{$tyre->dot}}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">จำนวนที่ต้องสต๊อก</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="stock" name="stock" value="{{$tyre->stock}}" class="form-control">
                                                 </div>
                                             </div>
                                             <input type="hidden" class="form-control" name="id" value="{{$tyre->id}}">

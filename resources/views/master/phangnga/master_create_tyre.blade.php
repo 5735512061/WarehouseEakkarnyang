@@ -63,14 +63,14 @@
                                                     <input type="text" id="size" name="size" placeholder="กรุณากรอกขนาดยาง" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
+                                            {{-- <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">ราคาต้นทุน</label>
+                                                    <label for="text-input" class=" form-control-label">ราคาต้นทุนส่ง</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="cost" name="cost" placeholder="กรุณากรอกราคาต้นทุนสินค้า" class="form-control">
+                                                    <input type="text" id="cost" name="cost" placeholder="กรุณากรอกราคาต้นทุนส่งสินค้า" class="form-control">
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">จำนวนสินค้า</label>
@@ -81,26 +81,26 @@
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">ปีที่ผลิต</label>
+                                                    <label for="text-input" class=" form-control-label">ปีผลิต</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="year" name="year" value="2018" placeholder="กรุณากรอกปีที่ผลิต" class="form-control">
+                                                    <input type="text" id="year" name="year" placeholder="กรุณากรอกปีผลิต" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">โปรโมชั่น</label>
+                                                    <label for="text-input" class=" form-control-label">สัปดาห์ยาง (DOT)</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="promotion" name="promotion" placeholder="กรุณากรอกโปรโมชั่น" class="form-control" value="-">
+                                                    <input type="text" id="dot" name="dot" placeholder="กรุณากรอกสัปดาห์ยาง (DOT)" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">หมายเหตุ</label>
+                                                    <label for="text-input" class=" form-control-label">จำนวนที่ต้องสต๊อก</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="comment" name="comment" placeholder="กรุณากรอกหมายเหตุ" class="form-control" value="-">
+                                                    <input type="text" id="stock" name="stock" placeholder="กรุณากรอกจำนวนที่ต้องสต๊อก" class="form-control">
                                                 </div>
                                             </div>
                                             <input type="hidden" class="form-control" name="master_id" value="{{Auth::user()->id}}">

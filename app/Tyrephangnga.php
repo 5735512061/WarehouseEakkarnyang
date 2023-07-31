@@ -8,7 +8,7 @@ class Tyrephangnga extends Model
 {
     protected $table = 'tyrephangngas';
     protected $fillable = [
-    	'category','model', 'size', 'cost', 'amount', 'year', 'promotion', 'comment', 'master_id', 'admin_id',
+    	'category','model', 'size', 'cost', 'amount', 'dot', 'master_id', 'admin_id', 'stock', 'year',
 
     ];
     protected $primaryKey = 'id';

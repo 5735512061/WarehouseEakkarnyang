@@ -22,7 +22,10 @@
                                 <i class="fas fa-dot-circle-o"></i>คลังสินค้า</a>
                             <ul class="list-unstyled js-sub-list">
                                 <li>
-                                    <a href="{{url('/admin/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    <a href="{{url('/admin/stock-main/warehouse')}}">คลังสินค้าหลัก</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/admin/khokkloi/warehouse')}}">สาขาโคกกลอย</a>
                                 </li>
                                 <li>
                                     <a href="{{url('/admin/bypart/warehouse')}}">สาขาบายพาส</a>
@@ -73,6 +76,14 @@
                                     <a href="#">ดูรายการซื้อ</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>ออกจากระบบ</a>
+                            <form id="logout-form" action="{{ 'App\Admin' == Auth::getProvider()->getModel() ? route('admin.logout') : route('admin.logout') }}" method="POST">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -94,7 +105,10 @@
                                 <i class="fas fa-dot-circle-o"></i>คลังสินค้า</a>
                             <ul class="list-unstyled js-sub-list">
                                 <li>
-                                    <a href="{{url('/admin/khokkloi/warehouse')}}">สาขาโคกกลอย (คลังหลัก)</a>
+                                    <a href="{{url('/admin/stock-main/warehouse')}}">คลังสินค้าหลัก</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/admin/khokkloi/warehouse')}}">สาขาโคกกลอย</a>
                                 </li>
                                 <li>
                                     <a href="{{url('/admin/bypart/warehouse')}}">สาขาบายพาส</a>
@@ -145,6 +159,14 @@
                                     <a href="#">ดูรายการซื้อ</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>ออกจากระบบ</a>
+                            <form id="logout-form" action="{{ 'App\Admin' == Auth::getProvider()->getModel() ? route('admin.logout') : route('admin.logout') }}" method="POST">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </nav>

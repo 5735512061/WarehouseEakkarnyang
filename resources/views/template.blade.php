@@ -8,7 +8,9 @@
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	<title>คลังสินค้า เอกการยาง</title>
 	@include("header")
-
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap');
+	</style>
 </head>
 
 <body class="animsition">

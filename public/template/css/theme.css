@@ -99,7 +99,7 @@ p {
 
 /* ----- Typography ----- */
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Sarabun',"Poppins", sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 1;
@@ -706,7 +706,7 @@ section {
     border: 1px solid #e5e5e5;
     font-size: 14px;
     color: #666;
-    padding: 0 17px;
+    padding: 0 50px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -796,24 +796,28 @@ section {
 }
 
 .au-input--xl {
-    min-width: 935px;
+    /* min-width: 935px; */
+    min-width: 100%;
 }
 
 @media (max-width: 1600px) {
     .au-input--xl {
-        min-width: 350px;
+        /* min-width: 350px; */
+        min-width: 100%;
     }
 }
 
 @media (max-width: 991px) {
     .au-input--xl {
-        min-width: 350px;
+        /* min-width: 350px; */
+        min-width: 100%;
     }
 }
 
 @media (max-width: 767px) {
     .au-input--xl {
-        min-width: 150px;
+        /* min-width: 150px; */
+        min-width: 80%;
     }
 }
 
@@ -1651,7 +1655,7 @@ section {
 }
 
 .header-mobile .header-mobile__bar {
-    padding: 15px 0;
+    padding: 3px 0;
 }
 
 .header-mobile .header-mobile-inner {
@@ -1675,7 +1679,7 @@ section {
 .header-mobile .hamburger {
     width: 36px;
     height: 36px;
-    padding: 0;
+    padding: 0 10px;
     line-height: 1;
     vertical-align: top;
     background: #fff;

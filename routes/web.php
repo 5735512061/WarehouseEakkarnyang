@@ -35,6 +35,22 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/master/blockcustomer/{id}', 'MasterController@block_customer');
 	Route::post('/master/blockcustomer/{id}','MasterController@blockcustomer');
 
+	/*master stock_main*/	
+	Route::post('/master/stock-main/search','MasterController@search_stock_main');
+	Route::get('/master/stock-main/search','MasterController@search_stock_main_get');
+	Route::get('/master/stock-main/warehouse','StockMain\ProductsController@warehouse');
+	Route::get('/master/stock-main/create-tyre','StockMain\ProductsController@create_tyre');
+	Route::post('/master/stock-main/create-tyre','StockMain\ProductsController@createtyre');
+
+	Route::get('/master/stock-main/tyre','StockMain\ProductsController@product_tyre')->name('home');
+	Route::get('/master/stock-main/edit/{id}', 'StockMain\ProductsController@edit_tyre');
+	Route::post('/master/stock-main/update-tyre','StockMain\ProductsController@update_tyre');
+	Route::post('/master/stock-main/add-tyre','StockMain\ProductsController@add_tyre');
+	Route::post('/master/stock-main/delete-tyre','StockMain\ProductsController@delete_tyre');
+	Route::post('/master/stock-main/search-add-tyre','StockMain\ProductsController@search_add_tyre');
+	Route::post('/master/stock-main/search-delete-tyre','StockMain\ProductsController@search_delete_tyre');
+	Route::post('/master/stock-main/tyredelete/{id}', 'StockMain\ProductsController@posttyredelete');
+
 	/*master khokkloi*/	
 	Route::post('/master/khokkloi/search','MasterController@search_khokkloi');
 	Route::get('/master/khokkloi/search','MasterController@search_khokkloi_get');
@@ -48,7 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/master/khokkloi/create-shock','Khokkloi\ProductsController@create_shock');
 	Route::get('/master/khokkloi/create-accessory','Khokkloi\ProductsController@create_accessory');
 
-	Route::get('/master/khokkloi/tyre','Khokkloi\ProductsController@product_tyre')->name('home');
+	Route::get('/master/khokkloi/tyre','Khokkloi\ProductsController@product_tyre');
 	Route::get('/master/khokkloi/edit/{id}', 'Khokkloi\ProductsController@edit_tyre');
 	Route::post('/master/khokkloi/update-tyre','Khokkloi\ProductsController@update_tyre');
 	Route::post('/master/khokkloi/add-tyre','Khokkloi\ProductsController@add_tyre');
@@ -209,7 +225,7 @@ Route::group(['middleware' => ['auth']], function () {
 /*Admin*/
 Route::group(['prefix' => 'admin'], function(){
 
-	Route::get('/','AdminController@index')->name('admin.home');
+	Route::get('/','AdminController@index');
 	Route::get('/login','AuthAdmin\LoginController@ShowLoginForm')->name('admin.login');
     Route::post('/login','AuthAdmin\LoginController@login')->name('admin.login.submit');    
   	Route::get('/changePassword','AdminController@showChangePasswordForm');
@@ -218,11 +234,23 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::post('/profile','AdminController@update_profile');
 	Route::post('/logout', 'AuthAdmin\LoginController@logout')->name('admin.logout');   
 
+	/*admin stock_main*/	
+	Route::post('/stock-main/search','AdminController@search_stock_main');
+	Route::get('/stock-main/search','AdminController@search_stock_main_get');
+	Route::get('/stock-main/warehouse','AdminStockMain\ProductsController@warehouse');
+	Route::get('/stock-main/tyre','AdminStockMain\ProductsController@product_tyre')->name('admin.home');
+	Route::get('/stock-main/edit/{id}', 'AdminStockMain\ProductsController@edit_tyre');
+	Route::post('/stock-main/update-tyre','AdminStockMain\ProductsController@update_tyre');
+	Route::post('/stock-main/add-tyre','AdminStockMain\ProductsController@add_tyre');
+	Route::post('/stock-main/delete-tyre','AdminStockMain\ProductsController@delete_tyre');
+	Route::post('/stock-main/search-add-tyre','AdminStockMain\ProductsController@search_add_tyre');
+	Route::post('/stock-main/search-delete-tyre','AdminStockMain\ProductsController@search_delete_tyre');
+
 	/*admin khokkloi*/	
 	Route::post('/khokkloi/search','AdminController@search_khokkloi');
 	Route::get('/khokkloi/search','AdminController@search_khokkloi_get');
 	Route::get('/khokkloi/warehouse','AdminKhokkloi\ProductsController@warehouse');
-	Route::get('/khokkloi/tyre','AdminKhokkloi\ProductsController@product_tyre')->name('home');
+	Route::get('/khokkloi/tyre','AdminKhokkloi\ProductsController@product_tyre');
 	Route::get('/khokkloi/edit/{id}', 'AdminKhokkloi\ProductsController@edit_tyre');
 	Route::post('/khokkloi/update-tyre','AdminKhokkloi\ProductsController@update_tyre');
 	Route::post('/khokkloi/add-tyre','AdminKhokkloi\ProductsController@add_tyre');
@@ -342,10 +370,15 @@ Route::group(['prefix' => 'customer'], function(){
   	Route::get('/profile','CustomerController@profile');
 	Route::post('/profile','CustomerController@update_profile');
 
+	/*customer stock_main*/	
+	Route::post('/stock-main/search','CustomerController@search_stock_main');
+	Route::post('/stock-main/search-yokohama','CustomerController@search_yokohama_stock_main');
+	Route::get('/stock-main/tyre','CustomerStockMain\ProductsController@product_tyre')->name('customer.home');
+
 	/*customer khokkloi*/	
 	Route::post('/khokkloi/search','CustomerController@search_khokkloi');
 	Route::post('/khokkloi/search-yokohama','CustomerController@search_yokohama');
-	Route::get('/khokkloi/tyre','CustomerKhokkloi\ProductsController@product_tyre')->name('home');
+	Route::get('/khokkloi/tyre','CustomerKhokkloi\ProductsController@product_tyre')->name('customer.khokkloi');
 
 	/*customer bypart*/	
 	Route::post('/bypart/search','CustomerController@search_bypart');
@@ -366,4 +399,7 @@ Route::group(['prefix' => 'customer'], function(){
 	/*customer phangnga*/	
 	Route::post('/phangnga/search','CustomerController@search_phangnga');
 	Route::get('/phangnga/tyre','CustomerPhangnga\ProductsController@product_tyre');
+
+	// Customer stock-amount
+	Route::get('/stock-amount','CustomerController@stockAmount');
 });

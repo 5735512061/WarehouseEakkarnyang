@@ -62,10 +62,10 @@
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">ราคาต้นทุน</label>
+                                                    <label for="text-input" class=" form-control-label">ราคาต้นทุนส่ง</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="text-input" name="text-input" placeholder="กรุณากรอกราคาต้นทุนสินค้า" class="form-control">
+                                                    <input type="text" id="text-input" name="text-input" placeholder="กรุณากรอกราคาต้นทุนส่งสินค้า" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row form-group">

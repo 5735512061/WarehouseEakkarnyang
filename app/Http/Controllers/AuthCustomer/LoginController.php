@@ -54,7 +54,10 @@ class LoginController extends Controller
         ];
 
        if(Auth::guard('customer')->attempt($credential, $request->member)){
-         return redirect()->intended(route('customer.home'));
+          if(Auth::guard('customer')->user()->role == "10")
+            return redirect()->intended(route('customer.home'));
+          else
+            return redirect()->intended(route('customer.home'));
        }
        
        return redirect()->back()->withInput($request->only('customer_name','remember'));

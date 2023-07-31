@@ -4,40 +4,85 @@
 	@include("/customer/customer_navbar_mobile")  
         <!-- PAGE CONTAINER-->
         <div class="page-container">
-        	@include("/customer/customer_navbar_desktop")
+        	{{-- @include("/customer/customer_navbar_desktop") --}}
             <!-- MAIN CONTENT-->
             <div class="main-content">
-                <div class="row" style="margin-left: 20px; margin-bottom: 5px;">
-                    <div class="col-md-3">
-                        <div class="alert alert-primary" role="alert">
-                            คลังสินค้าสาขาโคกกลอย
-                        </div>
-                    </div>
-                    @if(auth('customer')->user()->role == 6)
-                    <div class="col-md-3">
-                        <form class="form-header" action="{{url('/customer/khokkloi/search-yokohama')}}" method="POST">{{ csrf_field() }}
-                            <input class="au-input au-input--xl" type="text" name="search" placeholder="ค้นหาสินค้า" autocomplete="off" />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                        </form>
-                    </div>
-                    @else
-                    <div class="col-md-3">
+                <center><h2 style="color: #fff;">คลังสินค้า สาขาโคกกลอย</h2></center>
+                <center>
+                    <div class="col-md-8 mt-3" style="margin-bottom: 15px;">
                         <form class="form-header" action="{{url('/customer/khokkloi/search')}}" method="POST">{{ csrf_field() }}
-                            <input class="au-input au-input--xl" type="text" name="search" placeholder="ค้นหาสินค้า" autocomplete="off" />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
+                            <input class="au-input au-input--xl" type="text" name="search" placeholder="ค้นหาสินค้า เช่น 185/60R15" autocomplete="off" />
+                            <button class="au-btn--submit" type="submit">
+                                <i class="zmdi zmdi-search"></i>
+                            </button>
                         </form>
                     </div>
-                    @endif
-                </div>
-                <div class="row">
-                    <div class="col-md-3" style="margin-left: 40px; margin-bottom: 20px;">
+                </center>
+                <center><div class="col-md-3">
                     <input type="hidden" value="check" name="check">
                         <div style="color: #ffffff;">
                             <input type="checkbox" id="check_have_product"  onclick="func_Check_have_product()"> แสดงเฉพาะสินค้าที่มี
+                        </div>
+                    </div>
+                </center>
+                @php
+                    $amount_michelin = DB::table('tyreproducts')->where('category','MICHELIN')->sum('amount');
+                    $amount_bfg = DB::table('tyreproducts')->where('category','BF Goodrich')->sum('amount');
+                    $amount_otani = DB::table('tyreproducts')->where('category','OTANI')->sum('amount');
+                    $amount_maxxis = DB::table('tyreproducts')->where('category','MAXXIS')->sum('amount');
+                    $amount_yoko = DB::table('tyreproducts')->where('category','YOKOHAMA')->sum('amount');
+                    $amount_brid = DB::table('tyreproducts')->where('category','BRIDGESTONE')->sum('amount');
+                    $amount_toyo = DB::table('tyreproducts')->where('category','TOYO')->sum('amount');
+                    $amount_nitto = DB::table('tyreproducts')->where('category','NITTO')->sum('amount');
+                    $amount_goodyear = DB::table('tyreproducts')->where('category','GOODYEAR')->sum('amount');
+                    $amount_raiden = DB::table('tyreproducts')->where('category','RAIDEN')->sum('amount');
+                    $amount_other = DB::table('tyreproducts')->where('category','อื่นๆ')->sum('amount');
+
+                    $sum = $amount_michelin + $amount_bfg + $amount_otani + $amount_maxxis + $amount_yoko + $amount_brid
+                            + $amount_toyo + $amount_nitto + $amount_goodyear + $amount_raiden + $amount_other;
+                    $sum_format = number_format($sum);
+                
+                    $stock = DB::table('tyreproducts')->sum('stock');
+                    $stock_format = number_format($stock);
+                @endphp
+                <center>
+                    <div class="col-md-4 mt-3">
+                        <a href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="zmdi zmdi-info-outline"></i> สรุปจำนวนสต๊อก</a>
+                    </div>
+                    <div class="col-md-4 mt-2" style="margin-bottom: 20px; color: #00ff0a;">
+                        จำนวนที่มีในสต๊อกทั้งหมด {{$sum_format}} เส้น
+                    </div>
+                    <div class="col-md-4 mt-2" style="margin-bottom: 15px; color: #ff7d30;">
+                        จำนวนที่ต้องสต๊อก {{$stock_format}} เส้น
+                    </div>
+                </center>
+                <!-- สรุปจำนวนสต๊อก -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">สรุปจำนวนสต๊อก</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>MICHELIN = {{$amount_michelin}} เส้น</p><br>
+                                <p>BF Goodrich = {{$amount_bfg}} เส้น</p><br>
+                                <p>OTANI = {{$amount_otani}} เส้น</p><br>
+                                <p>MAXXIS = {{$amount_maxxis}} เส้น</p><br>
+                                <p>YOKOHAMA = {{$amount_yoko}} เส้น</p><br>
+                                <p>BRIDGESTONE = {{$amount_brid}} เส้น</p><br>
+                                <p>TOYO = {{$amount_toyo}} เส้น</p><br>
+                                <p>NITTO = {{$amount_nitto}} เส้น</p><br>
+                                <p>Goodyear = {{$amount_goodyear}} เส้น</p><br>
+                                <p>RAIDEN = {{$amount_raiden}} เส้น</p><br>
+                                <p>อื่นๆ = {{$amount_other}} เส้น</p><br><br>
+                                <p style="color: red;">รวมทั้งหมด {{$sum_format}} เส้น</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -54,12 +99,114 @@
                                                     <td>ยี่ห้อ</td>
                                                     <td>ขนาด</td>
                                                     <td>รุ่น</td>
-                                                    <td>ราคาต้นทุน</td>
+                                                    {{-- <td>ราคาต้นทุนส่ง</td> --}}
                                                     <td>จำนวน</td>
-                                                    <td>ปีที่ผลิต</td>
-                                                    <td>หมายเหตุ</td>
+                                                    <td>ปียาง</td>
+                                                    <td>สัปดาห์ยาง (DOT)</td>
+                                                    <td>
+                                                        <input type="hidden" value="check" name="check">
+                                                        <input type="checkbox" id="check_stock"  onclick="func_Check_stock()"> จำนวนที่ต้องสต๊อก
+                                                    </td>
                                                 </tr>
                                             </thead>
+                                            @if(auth('customer')->user()->role == "10")
+                                            @foreach($search_otanis as $search => $value)
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>{{$NUM_PAGE*($page-1) + $search+1}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>{{$value->category}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>{{$value->size}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>{{$value->model}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    {{-- @if(auth('customer')->user()->role == "5")
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            @if($value->category == "OTANI")
+                                                                    $sale = str_replace(',','',$value->cost); 
+                                                                    $sale = (floatval($sale) - (0.1 * floatval($sale))) + 200;
+                                                                    $sale = number_format($sale);
+                                                                <h6>{{$sale}}</h6>
+                                                            @else
+                                                                <h6>{{$value->cost}}</h6>
+                                                            @endif
+                                                        </div>
+                                                    </td>
+                                                    @else --}}
+                                                    {{-- <td>
+                                                        <div class="table-data__info">
+                                                            @if($value->category == "OTANI")
+                                                                    $balance = str_replace(',','',$value->cost); 
+                                                                    $balance = floatval($balance) - (0.1 * floatval($balance));
+                                                                    $balance = number_format($balance);
+                                                            <h6>{{$value->cost}}</h6>
+                                                            <h6>{{$balance}}</h6>
+                                                            @else
+                                                            <h6>{{$value->cost}}</h6>
+                                                            @endif
+                                                        </div>
+                                                    </td>
+                                                    @endif --}}
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>
+                                                            @if($value->amount == 0)
+                                                                <div class="dont_have_amount" style="color: red;">หมด</div>
+                                                            @else
+                                                                <div class="col-sm-1 have_amount">
+                                                                    {{$value->amount}}
+                                                                </div> 
+                                                            @endif
+                                                            </h6>
+                                                        </div>
+                                                    </td>
+                                                    @if($value->year == "2023")
+                                                        <td>
+                                                            <div class="table-data__info">
+                                                                <h6 style="color:#000;">{{$value->year}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    @else 
+                                                        <td>
+                                                            <div class="table-data__info">
+                                                                <h6 style="color:red;">{{$value->year}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    @endif
+                                                    <td>
+                                                        <div class="table-data__info">
+                                                            <h6>{{$value->dot}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        @if($value->stock == 0)
+                                                             <div class="table-data__info stock">
+                                                                 <h6>0</h6>
+                                                             </div>
+                                                         @else 
+                                                             <div class="table-data__info">
+                                                                 <h6>{{$value->stock}}</h6>
+                                                             </div>
+                                                         @endif
+                                                     </td>
+                                                </tr>
+                                            </tbody>
+                                            @endforeach
+                                            @else 
                                             @foreach($searchs as $search => $value)
                                             <tbody>
                                                 <tr>
@@ -83,38 +230,34 @@
                                                             <h6>{{$value->model}}</h6>
                                                         </div>
                                                     </td>
-                                                    @if(auth('customer')->user()->role == "5")
+                                                    {{-- @if(auth('customer')->user()->role == "5")
                                                     <td>
                                                         <div class="table-data__info">
                                                             @if($value->category == "OTANI")
-                                                                <?php 
                                                                     $sale = str_replace(',','',$value->cost); 
                                                                     $sale = (floatval($sale) - (0.1 * floatval($sale))) + 200;
                                                                     $sale = number_format($sale);
-                                                                ?>
                                                                 <h6>{{$sale}}</h6>
                                                             @else
                                                                 <h6>{{$value->cost}}</h6>
                                                             @endif
                                                         </div>
                                                     </td>
-                                                    @else
-                                                    <td>
+                                                    @else --}}
+                                                    {{-- <td>
                                                         <div class="table-data__info">
                                                             @if($value->category == "OTANI")
-                                                                <?php 
                                                                     $balance = str_replace(',','',$value->cost); 
                                                                     $balance = floatval($balance) - (0.1 * floatval($balance));
                                                                     $balance = number_format($balance);
-                                                                ?>
-                                                            {{-- <h6>{{$value->cost}}</h6> --}}
+                                                            <h6>{{$value->cost}}</h6>
                                                             <h6>{{$balance}}</h6>
                                                             @else
                                                             <h6>{{$value->cost}}</h6>
                                                             @endif
                                                         </div>
                                                     </td>
-                                                    @endif
+                                                    @endif --}}
                                                     <td>
                                                         <div class="table-data__info">
                                                             <h6>
@@ -128,33 +271,39 @@
                                                             </h6>
                                                         </div>
                                                     </td>
-                                                    @if($value->year == "2018")
-                                                    <td>
-                                                        <div class="table-data__info">
-                                                            <h6 style="color: red;">{{$value->year}}</h6>
-                                                        </div>
-                                                    </td>
-                                                    @elseif($value->year == "2019")
-                                                    <td>
-                                                        <div class="table-data__info">
-                                                            <h6 style="color: #1fb141;">{{$value->year}}</h6>
-                                                        </div>
-                                                    </td>
-                                                    @else
-                                                    <td>
-                                                        <div class="table-data__info">
-                                                            <h6>{{$value->year}}</h6>
-                                                        </div>
-                                                    </td>
+                                                    @if($value->year == "2023")
+                                                        <td>
+                                                            <div class="table-data__info">
+                                                                <h6 style="color:#000;">{{$value->year}}</h6>
+                                                            </div>
+                                                        </td>
+                                                    @else 
+                                                        <td>
+                                                            <div class="table-data__info">
+                                                                <h6 style="color:red;">{{$value->year}}</h6>
+                                                            </div>
+                                                        </td>
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->comment}}</h6>
+                                                            <h6>{{$value->dot}}</h6>
                                                         </div>
                                                     </td>
+                                                    <td>
+                                                        @if($value->stock == 0)
+                                                             <div class="table-data__info stock">
+                                                                 <h6>0</h6>
+                                                             </div>
+                                                         @else 
+                                                             <div class="table-data__info">
+                                                                 <h6>{{$value->stock}}</h6>
+                                                             </div>
+                                                         @endif
+                                                     </td>
                                                 </tr>
                                             </tbody>
                                             @endforeach
+                                            @endif
                                         </table>
                                     </div>
                                 </div>
@@ -180,5 +329,19 @@
             });
           }
         }
+
+    function func_Check_stock() {
+        var checkBox = document.getElementById("check_stock");
+
+        if (checkBox.checked == true){
+                $.each($('.stock'), function(index, val) {
+                $(val).parents('tr')[0].style.display = "none"
+            });
+        } else {
+                $.each($('.stock'), function(index, val) {
+                $(val).parents('tr')[0].style.display = "table-row"
+            });
+        }
+    }
 </script>
 @endsection

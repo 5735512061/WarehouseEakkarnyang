@@ -21,9 +21,9 @@ class ProductsController extends Controller
 
     public function createtyre(Request $request) {
         $tyrecategories = Tyrecategory::get();
-        $tyre = request()->all();
+        $tyre = $request->all();
         Tyrephangnga::create($tyre);
-        return view('/master/phangnga/master_create_tyre')->with('tyrecategories',$tyrecategories);
+        return back();
     }
 
     public function add_tyre(Request $request) {
