@@ -12,10 +12,12 @@
             </center>
             <center>
                 <div class="col-md-4 mt-3">
-                    <a href="{{ url('/master/khokkloi/create-tyre') }}" type="button" class="btn btn-primary"><i class="zmdi zmdi-plus"></i> เพิ่มสินค้าในคลัง</a>
+                    <a href="{{ url('/master/khokkloi/create-tyre') }}" type="button" class="btn btn-primary"><i
+                            class="zmdi zmdi-plus"></i> เพิ่มสินค้าในคลัง</a>
                 </div>
                 <div class="col-md-8 mt-3" style="margin-bottom: 15px;">
-                    <form class="form-header" action="{{ url('/master/khokkloi/search') }}" method="POST">{{ csrf_field() }}
+                    <form class="form-header" action="{{ url('/master/khokkloi/search') }}" method="POST">
+                        {{ csrf_field() }}
                         <input class="au-input au-input--xl" type="text" name="search"
                             placeholder="ค้นหาสินค้า เช่น 185/60R15" autocomplete="off" />
                         <button class="au-btn--submit" type="submit">
@@ -294,17 +296,31 @@
                                                                 <h6>{{ $value->dot }}</h6>
                                                             </div>
                                                         </td>
-                                                        <td>
-                                                            @if ($value->stock == 0)
-                                                                <div class="table-data__info stock_mi">
-                                                                    <h6>0</h6>
-                                                                </div>
-                                                            @else
-                                                                <div class="table-data__info">
-                                                                    <h6>{{ $value->stock }}</h6>
-                                                                </div>
-                                                            @endif
-                                                        </td>
+                                                        @if ($value->stock_required == 'ต้องสต๊อก')
+                                                            <td>
+                                                                @if ($value->stock == 0)
+                                                                    <div class="table-data__info__stock__have stock_mi">
+                                                                        <h6>0</h6>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="table-data__info__stock__have">
+                                                                        <h6>{{ $value->stock }}</h6>
+                                                                    </div>
+                                                                @endif
+                                                            </td>
+                                                        @elseif($value->stock_required == 'ไม่ต้องสต๊อก')
+                                                            <td>
+                                                                @if ($value->stock == 0)
+                                                                    <div class="table-data__info__stock__not stock_mi">
+                                                                        <h6>0</h6>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="table-data__info__stock__not">
+                                                                        <h6>{{ $value->stock }}</h6>
+                                                                    </div>
+                                                                @endif
+                                                            </td>
+                                                        @endif
                                                         @if (Auth::user()->role == '1' || Auth::user()->role == '2')
                                                             <td>
                                                                 <a

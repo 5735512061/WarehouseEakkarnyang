@@ -133,7 +133,6 @@
                                                 {{-- <td>ราคาต้นทุนส่ง</td> --}}
                                                 <td>จำนวน</td>
                                                 <td>ปียาง</td>
-                                                <td>ปียาง</td>
                                                 <td>สัปดาห์ยาง (DOT)</td>
                                                 <td>
                                                     {{-- <input type="hidden" value="check" name="check">
@@ -258,17 +257,31 @@
                                                                 <h6>{{ $value->dot }}</h6>
                                                             </div>
                                                         </td>
-                                                        <td>
-                                                            @if ($value->stock == 0)
-                                                                <div class="table-data__info stock_mi">
-                                                                    <h6>0</h6>
-                                                                </div>
-                                                            @else
-                                                                <div class="table-data__info">
-                                                                    <h6>{{ $value->stock }}</h6>
-                                                                </div>
-                                                            @endif
-                                                        </td>
+                                                        @if ($value->stock_required == 'ต้องสต๊อก')
+                                                            <td>
+                                                                @if ($value->stock == 0)
+                                                                    <div class="table-data__info__stock__have stock_mi">
+                                                                        <h6>0</h6>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="table-data__info__stock__have">
+                                                                        <h6>{{ $value->stock }}</h6>
+                                                                    </div>
+                                                                @endif
+                                                            </td>
+                                                        @elseif($value->stock_required == 'ไม่ต้องสต๊อก')
+                                                            <td>
+                                                                @if ($value->stock == 0)
+                                                                    <div class="table-data__info__stock__not stock_mi">
+                                                                        <h6>0</h6>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="table-data__info__stock__not">
+                                                                        <h6>{{ $value->stock }}</h6>
+                                                                    </div>
+                                                                @endif
+                                                            </td>
+                                                        @endif
                                                         @if (Auth::user()->role == '1')
                                                             <td>
                                                                 <a

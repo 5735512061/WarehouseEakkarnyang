@@ -12,7 +12,8 @@
             </center>
             <center>
                 <div class="col-md-4 mt-3">
-                    <a href="{{ url('/master/chaofa/create-tyre') }}" type="button" class="btn btn-primary"><i class="zmdi zmdi-plus"></i> เพิ่มสินค้าในคลัง</a>
+                    <a href="{{ url('/master/chaofa/create-tyre') }}" type="button" class="btn btn-primary"><i
+                            class="zmdi zmdi-plus"></i> เพิ่มสินค้าในคลัง</a>
                 </div>
                 <div class="col-md-8 mt-3" style="margin-bottom: 15px;">
                     <form class="form-header" action="{{ url('/master/chaofa/search') }}" method="POST">{{ csrf_field() }}
@@ -138,7 +139,7 @@
                                                         {{-- <input type="hidden" value="check" name="check">
                                                         <input type="checkbox" id="check_stock_mi"
                                                             onclick="func_Check_stock_mi()">  --}}
-                                                            จำนวนที่ต้องสต๊อก
+                                                        จำนวนที่ต้องสต๊อก
                                                     </td>
                                                     @if (Auth::user()->role == '1')
                                                         <td></td>
@@ -252,17 +253,32 @@
                                                                     <h6>{{ $value->dot }}</h6>
                                                                 </div>
                                                             </td>
-                                                            <td>
-                                                                @if ($value->stock == 0)
-                                                                    <div class="table-data__info stock_mi">
-                                                                        <h6>0</h6>
-                                                                    </div>
-                                                                @else
-                                                                    <div class="table-data__info">
-                                                                        <h6>{{ $value->stock }}</h6>
-                                                                    </div>
-                                                                @endif
-                                                            </td>
+                                                            @if ($value->stock_required == 'ต้องสต๊อก')
+                                                                <td>
+                                                                    @if ($value->stock == 0)
+                                                                        <div
+                                                                            class="table-data__info__stock__have stock_mi">
+                                                                            <h6>0</h6>
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="table-data__info__stock__have">
+                                                                            <h6>{{ $value->stock }}</h6>
+                                                                        </div>
+                                                                    @endif
+                                                                </td>
+                                                            @elseif($value->stock_required == 'ไม่ต้องสต๊อก')
+                                                                <td>
+                                                                    @if ($value->stock == 0)
+                                                                        <div class="table-data__info__stock__not stock_mi">
+                                                                            <h6>0</h6>
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="table-data__info__stock__not">
+                                                                            <h6>{{ $value->stock }}</h6>
+                                                                        </div>
+                                                                    @endif
+                                                                </td>
+                                                            @endif
                                                             @if (Auth::user()->role == '1')
                                                                 <td>
                                                                     <a

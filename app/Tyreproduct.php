@@ -8,7 +8,7 @@ class Tyreproduct extends Model
 {
     protected $table = 'tyreproducts';
     protected $fillable = [
-    	'category','model', 'size', 'cost', 'amount', 'dot', 'master_id', 'admin_id', 'stock', 'year',
+    	'category','model', 'size', 'cost', 'amount', 'dot', 'master_id', 'admin_id', 'stock', 'year', 'stock_required'
 
     ];
     protected $primaryKey = 'id';

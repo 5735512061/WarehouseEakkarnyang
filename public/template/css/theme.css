@@ -4401,6 +4401,21 @@ section {
     color: #666;
 }
 
+.table-data__info__stock__not h6 {
+    background-color:red; 
+    width:50%; 
+    text-align:center; 
+    color:#fff; 
+    border-radius:2rem;
+}
+
+.table-data__info__stock__have h6 {
+    background-color:rgb(255, 255, 255); 
+    width:50%; 
+    text-align:center; 
+    color:#808080; 
+}
+
 .more {
     display: inline-block;
     cursor: pointer;
