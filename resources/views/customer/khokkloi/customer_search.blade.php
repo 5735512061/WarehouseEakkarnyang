@@ -195,17 +195,31 @@
                                                                 <h6>{{ $value->dot }}</h6>
                                                             </div>
                                                         </td>
-                                                        <td>
-                                                            @if ($value->stock == 0)
-                                                                <div class="table-data__info stock">
-                                                                    <h6>0</h6>
-                                                                </div>
-                                                            @else
-                                                                <div class="table-data__info">
-                                                                    <h6>{{ $value->stock }}</h6>
-                                                                </div>
-                                                            @endif
-                                                        </td>
+                                                        @if ($value->stock_required == 'ต้องสต๊อก')
+                                                            <td>
+                                                                @if ($value->stock == 0)
+                                                                    <div class="table-data__info__stock__have stock">
+                                                                        <h6>0</h6>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="table-data__info__stock__have">
+                                                                        <h6>{{ $value->stock }}</h6>
+                                                                    </div>
+                                                                @endif
+                                                            </td>
+                                                        @elseif($value->stock_required == 'ไม่ต้องสต๊อก')
+                                                            <td>
+                                                                @if ($value->stock == 0)
+                                                                    <div class="table-data__info__stock__not stock">
+                                                                        <h6>0</h6>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="table-data__info__stock__not">
+                                                                        <h6>{{ $value->stock }}</h6>
+                                                                    </div>
+                                                                @endif
+                                                            </td>
+                                                        @endif
                                                     </tr>
                                                 </tbody>
                                             @endforeach
@@ -265,17 +279,31 @@
                                                                 <h6>{{ $value->dot }}</h6>
                                                             </div>
                                                         </td>
-                                                        <td>
-                                                            @if ($value->stock == 0)
-                                                                <div class="table-data__info stock">
-                                                                    <h6>0</h6>
-                                                                </div>
-                                                            @else
-                                                                <div class="table-data__info">
-                                                                    <h6>{{ $value->stock }}</h6>
-                                                                </div>
-                                                            @endif
-                                                        </td>
+                                                        @if ($value->stock_required == 'ต้องสต๊อก')
+                                                            <td>
+                                                                @if ($value->stock == 0)
+                                                                    <div class="table-data__info__stock__have stock">
+                                                                        <h6>0</h6>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="table-data__info__stock__have">
+                                                                        <h6>{{ $value->stock }}</h6>
+                                                                    </div>
+                                                                @endif
+                                                            </td>
+                                                        @elseif($value->stock_required == 'ไม่ต้องสต๊อก')
+                                                            <td>
+                                                                @if ($value->stock == 0)
+                                                                    <div class="table-data__info__stock__not stock">
+                                                                        <h6>0</h6>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="table-data__info__stock__not">
+                                                                        <h6>{{ $value->stock }}</h6>
+                                                                    </div>
+                                                                @endif
+                                                            </td>
+                                                        @endif
                                                     </tr>
                                                 </tbody>
                                             @endforeach
