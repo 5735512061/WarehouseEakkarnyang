@@ -88,6 +88,19 @@
                                                         value="{{ $tyre->stock }}" class="form-control">
                                                 </div>
                                             </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="select"
+                                                        class=" form-control-label">สินค้าที่ต้องสต๊อก</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="stock_required" class="form-control">
+                                                        <option>{{ $tyre->stock_required }}</option>
+                                                        <option>ต้องสต๊อก</option>
+                                                        <option>ไม่ต้องสต๊อก</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <input type="hidden" class="form-control" name="id"
                                                 value="{{ $tyre->id }}">
                                         </div>
