@@ -1,357 +1,396 @@
-@extends("template")
+@extends('template')
 
-@section("content")
-    @include("/admin/admin_navbar_mobile")  
-        <!-- PAGE CONTAINER-->
-        <div class="page-container">
-            {{-- @include("/admin/admin_navbar_desktop") --}}
-            <!-- MAIN CONTENT-->
-            <div class="main-content">
-                <center><h2 style="color: #fff;">คลังสินค้า สาขาไทวัสดุ</h2></center>
-                <center>
-                    <div class="col-md-8 mt-3" style="margin-bottom: 15px;">
-                        <form class="form-header" action="{{url('/admin/thaiwatsadu/search')}}" method="POST">{{ csrf_field() }}
-                            <input class="au-input au-input--xl" type="text" name="search" placeholder="ค้นหาสินค้า เช่น 185/60R15" autocomplete="off" />
-                            <button class="au-btn--submit" type="submit">
-                                <i class="zmdi zmdi-search"></i>
-                            </button>
-                        </form>
-                    </div>
-                </center>
-                <center><div class="col-md-3">
+@section('content')
+    @include('/admin/admin_navbar_mobile')
+    <!-- PAGE CONTAINER-->
+    <div class="page-container" style="font-family: 'Noto Sans Thai', sans-serif;">
+        {{-- @include("/admin/admin_navbar_desktop") --}}
+        <!-- MAIN CONTENT-->
+        <div class="main-content">
+            <center>
+                <h2 style="color: #fff;">คลังสินค้า สาขาไทวัสดุ</h2>
+            </center>
+            <center>
+                <div class="col-md-8 mt-3" style="margin-bottom: 15px;">
+                    <form class="form-header" action="{{ url('/admin/thaiwatsadu/search') }}" method="POST">
+                        {{ csrf_field() }}
+                        <input class="au-input au-input--xl" type="text" name="search"
+                            placeholder="ค้นหาสินค้า เช่น 185/60R15" autocomplete="off" />
+                        <button class="au-btn--submit" type="submit">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </center>
+            <center>
+                <div class="col-md-3">
                     <input type="hidden" value="check" name="check">
-                        <div style="color: #ffffff;">
-                            <input type="checkbox" id="check_have_product"  onclick="func_Check_have_product()"> แสดงเฉพาะสินค้าที่มี
-                        </div>
+                    <div style="color: #ffffff;">
+                        <input type="checkbox" id="check_have_product" onclick="func_Check_have_product()">
+                        แสดงเฉพาะสินค้าที่มี
                     </div>
-                </center>
-                @php
-                    $amount_michelin = DB::table('tyrethaiwatsadus')->where('category','MICHELIN')->sum('amount');
-                    $amount_bfg = DB::table('tyrethaiwatsadus')->where('category','BF Goodrich')->sum('amount');
-                    $amount_otani = DB::table('tyrethaiwatsadus')->where('category','OTANI')->sum('amount');
-                    $amount_maxxis = DB::table('tyrethaiwatsadus')->where('category','MAXXIS')->sum('amount');
-                    $amount_yoko = DB::table('tyrethaiwatsadus')->where('category','YOKOHAMA')->sum('amount');
-                    $amount_brid = DB::table('tyrethaiwatsadus')->where('category','BRIDGESTONE')->sum('amount');
-                    $amount_toyo = DB::table('tyrethaiwatsadus')->where('category','TOYO')->sum('amount');
-                    $amount_nitto = DB::table('tyrethaiwatsadus')->where('category','NITTO')->sum('amount');
-                    $amount_goodyear = DB::table('tyrethaiwatsadus')->where('category','GOODYEAR')->sum('amount');
-                    $amount_raiden = DB::table('tyrethaiwatsadus')->where('category','RAIDEN')->sum('amount');
-                    $amount_other = DB::table('tyrethaiwatsadus')->where('category','อื่นๆ')->sum('amount');
+                </div>
+            </center>
+            @php
+                $amount_michelin = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'MICHELIN')
+                    ->sum('amount');
+                $amount_bfg = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'BF Goodrich')
+                    ->sum('amount');
+                $amount_otani = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'OTANI')
+                    ->sum('amount');
+                $amount_maxxis = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'MAXXIS')
+                    ->sum('amount');
+                $amount_yoko = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'YOKOHAMA')
+                    ->sum('amount');
+                $amount_brid = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'BRIDGESTONE')
+                    ->sum('amount');
+                $amount_toyo = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'TOYO')
+                    ->sum('amount');
+                $amount_nitto = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'NITTO')
+                    ->sum('amount');
+                $amount_goodyear = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'GOODYEAR')
+                    ->sum('amount');
+                $amount_raiden = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'RAIDEN')
+                    ->sum('amount');
+                $amount_other = DB::table('tyrethaiwatsadus')
+                    ->where('category', 'อื่นๆ')
+                    ->sum('amount');
 
-                    $sum = $amount_michelin + $amount_bfg + $amount_otani + $amount_maxxis + $amount_yoko + $amount_brid
-                            + $amount_toyo + $amount_nitto + $amount_goodyear + $amount_raiden + $amount_other;
-                    $sum_format = number_format($sum);
-                
-                    $stock = DB::table('tyrethaiwatsadus')->sum('stock');
-                    $stock_format = number_format($stock);
-                @endphp
-                <center>
-                    <div class="col-md-4 mt-3">
-                        <a href="#" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="zmdi zmdi-info-outline"></i> สรุปจำนวนสต๊อก</a>
-                    </div>
-                    <div class="col-md-4 mt-2" style="margin-bottom: 20px; color: #00ff0a;">
-                        จำนวนที่มีในสต๊อกทั้งหมด {{$sum_format}} เส้น
-                    </div>
-                    <div class="col-md-4 mt-2" style="margin-bottom: 15px; color: #ff7d30;">
-                        จำนวนที่ต้องสต๊อก {{$stock_format}} เส้น
-                    </div>
-                </center>
-                <!-- สรุปจำนวนสต๊อก -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">สรุปจำนวนสต๊อก</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>MICHELIN = {{$amount_michelin}} เส้น</p><br>
-                                <p>BF Goodrich = {{$amount_bfg}} เส้น</p><br>
-                                <p>OTANI = {{$amount_otani}} เส้น</p><br>
-                                <p>MAXXIS = {{$amount_maxxis}} เส้น</p><br>
-                                <p>YOKOHAMA = {{$amount_yoko}} เส้น</p><br>
-                                <p>BRIDGESTONE = {{$amount_brid}} เส้น</p><br>
-                                <p>TOYO = {{$amount_toyo}} เส้น</p><br>
-                                <p>NITTO = {{$amount_nitto}} เส้น</p><br>
-                                <p>Goodyear = {{$amount_goodyear}} เส้น</p><br>
-                                <p>RAIDEN = {{$amount_raiden}} เส้น</p><br>
-                                <p>อื่นๆ = {{$amount_other}} เส้น</p><br><br>
-                                <p style="color: red;">รวมทั้งหมด {{$sum_format}} เส้น</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                            </div>
+                $sum = $amount_michelin + $amount_bfg + $amount_otani + $amount_maxxis + $amount_yoko + $amount_brid + $amount_toyo + $amount_nitto + $amount_goodyear + $amount_raiden + $amount_other;
+                $sum_format = number_format($sum);
+
+                $stock = DB::table('tyrethaiwatsadus')->sum('stock');
+                $stock_format = number_format($stock);
+            @endphp
+            <center>
+                <div class="col-md-4 mt-3">
+                    <a href="#" type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#exampleModal"><i class="zmdi zmdi-info-outline"></i> สรุปจำนวนสต๊อก</a>
+                </div>
+                <div class="col-md-4 mt-2" style="margin-bottom: 20px; color: #00ff0a;">
+                    จำนวนที่มีในสต๊อกทั้งหมด {{ $sum_format }} เส้น
+                </div>
+                <div class="col-md-4 mt-2" style="margin-bottom: 15px; color: #ff7d30;">
+                    จำนวนที่ต้องสต๊อก {{ $stock_format }} เส้น
+                </div>
+            </center>
+            <!-- สรุปจำนวนสต๊อก -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">สรุปจำนวนสต๊อก</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>MICHELIN = {{ $amount_michelin }} เส้น</p><br>
+                            <p>BF Goodrich = {{ $amount_bfg }} เส้น</p><br>
+                            <p>OTANI = {{ $amount_otani }} เส้น</p><br>
+                            <p>MAXXIS = {{ $amount_maxxis }} เส้น</p><br>
+                            <p>YOKOHAMA = {{ $amount_yoko }} เส้น</p><br>
+                            <p>BRIDGESTONE = {{ $amount_brid }} เส้น</p><br>
+                            <p>TOYO = {{ $amount_toyo }} เส้น</p><br>
+                            <p>NITTO = {{ $amount_nitto }} เส้น</p><br>
+                            <p>Goodyear = {{ $amount_goodyear }} เส้น</p><br>
+                            <p>RAIDEN = {{ $amount_raiden }} เส้น</p><br>
+                            <p>อื่นๆ = {{ $amount_other }} เส้น</p><br><br>
+                            <p style="color: red;">รวมทั้งหมด {{ $sum_format }} เส้น</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="user-data m-b-10">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <td>#</td>
-                                                    <td>ยี่ห้อ</td>
-                                                    <td>ขนาด</td>
-                                                    <td>รุ่น</td>
-                                                    {{-- <td>ราคาต้นทุนส่ง</td> --}}
-                                                    <td>จำนวน</td>
-                                                    <td>ปียาง</td>
-                                                    <td>สัปดาห์ยาง (DOT)</td>
-                                                    <td>
-                                                        <input type="hidden" value="check" name="check">
-                                                        <input type="checkbox" id="check_stock"  onclick="func_Check_stock()"> จำนวนที่ต้องสต๊อก
-                                                    </td>
-                                                    @if(auth('admin')->user()->role == "4")
+            </div>
+            <div class="col-lg-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="user-data m-b-10">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <td>#</td>
+                                                <td>ยี่ห้อ</td>
+                                                <td>ขนาด</td>
+                                                <td>รุ่น</td>
+                                                {{-- <td>ราคาต้นทุนส่ง</td> --}}
+                                                <td>จำนวน</td>
+                                                <td>ปียาง</td>
+                                                <td>สัปดาห์ยาง (DOT)</td>
+                                                <td>
+                                                    <input type="hidden" value="check" name="check">
+                                                    <input type="checkbox" id="check_stock" onclick="func_Check_stock()">
+                                                    จำนวนที่ต้องสต๊อก
+                                                </td>
+                                                @if (auth('admin')->user()->role == '4')
                                                     <td></td>
-                                                    @endif
-                                                </tr>
-                                            </thead>
-                                            @foreach($searchs as $search => $value)
+                                                @endif
+                                            </tr>
+                                        </thead>
+                                        @foreach ($searchs as $search => $value)
                                             <tbody>
                                                 <tr>
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$NUM_PAGE*($page-1) + $search+1}}</h6>
+                                                            <h6>{{ $NUM_PAGE * ($page - 1) + $search + 1 }}</h6>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->category}}</h6>
+                                                            <h6>{{ $value->category }}</h6>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->size}}</h6>
+                                                            <h6>{{ $value->size }}</h6>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->model}}</h6>
+                                                            <h6>{{ $value->model }}</h6>
                                                         </div>
                                                     </td>
-                                                    {{-- <td>
-                                                        <div class="table-data__info">
-                                                            @if($value->category == "OTANI")
-                                                                    $balance = str_replace(',','',$value->cost); 
-                                                                    $balance = floatval($balance) - (0.1 * floatval($balance));
-                                                                    $balance = number_format($balance);
-                                                                <h6>{{$balance}}</h6>
-                                                                <h6>{{$value->cost}}</h6>
-                                                            @else
-                                                            <h6>{{$value->cost}}</h6>
-                                                            @endif
-                                                        </div>
-                                                    </td> --}}
                                                     <td>
                                                         <div class="table-data__info">
                                                             <h6>
-                                                            @if(auth('admin')->user()->role == "4")
-                                                                @if($value->amount == 0)
-                                                                <div class="flex-container">
-                                                                    <div class="col-sm-1">
-                                                                        <button type="button" data-toggle="modal" data-target="#delete" data-id="{{$value->id}}">
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="col-sm-1">
-                                                                        <div class="dont_have_amount" style="color: red;">หมด</div>
-                                                                    </div>
-                                                                    <div class="col-sm-1">
-                                                                        <button type="button" data-toggle="modal" data-target="#add" data-id="{{$value->id}}"><i class="fa fa-plus-circle" style="color:blue;"></i></button>
-                                                                    </div>
-                                                                </div>
+                                                                @if (auth('admin')->user()->role == '4')
+                                                                    @if ($value->amount == 0)
+                                                                        <div class="flex-container">
+                                                                            <div class="col-sm-1">
+                                                                                <button type="button" data-toggle="modal"
+                                                                                    data-target="#delete"
+                                                                                    data-id="{{ $value->id }}">
+                                                                                </button>
+                                                                            </div>
+                                                                            <div class="col-sm-1">
+                                                                                <div class="dont_have_amount"
+                                                                                    style="color: red;">หมด</div>
+                                                                            </div>
+                                                                            <div class="col-sm-1">
+                                                                                <button type="button" data-toggle="modal"
+                                                                                    data-target="#add"
+                                                                                    data-id="{{ $value->id }}"><i
+                                                                                        class="fa fa-plus-circle"
+                                                                                        style="color:blue;"></i></button>
+                                                                            </div>
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="flex-container">
+                                                                            <div class="col-sm-1">
+                                                                                <button type="button" data-toggle="modal"
+                                                                                    data-target="#delete"
+                                                                                    data-id="{{ $value->id }}"><i
+                                                                                        class="fa fa-minus-circle"
+                                                                                        style="color:red;"></i></button>
+                                                                            </div>
+                                                                            <div class="col-sm-1 have_amount">
+                                                                                {{ $value->amount }}
+                                                                            </div>
+                                                                            <div class="col-sm-1">
+                                                                                <button type="button" data-toggle="modal"
+                                                                                    data-target="#add"
+                                                                                    data-id="{{ $value->id }}"><i
+                                                                                        class="fa fa-plus-circle"
+                                                                                        style="color:blue;"></i></button>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
                                                                 @else
-                                                                <div class="flex-container">
-                                                                    <div class="col-sm-1">
-                                                                        <button type="button" data-toggle="modal" data-target="#delete" data-id="{{$value->id}}"><i class="fa fa-minus-circle" style="color:red;"></i></button>
-                                                                    </div>
-                                                                    <div class="col-sm-1 have_amount">
-                                                                        {{$value->amount}}
-                                                                    </div> 
-                                                                    <div class="col-sm-1">
-                                                                        <button type="button" data-toggle="modal" data-target="#add" data-id="{{$value->id}}"><i class="fa fa-plus-circle" style="color:blue;"></i></button>
-                                                                    </div>
-                                                                </div>
+                                                                    @if ($value->amount == 0)
+                                                                        <div class="dont_have_amount" style="color: red;">
+                                                                            หมด</div>
+                                                                    @else
+                                                                        <div class="col-sm-1 have_amount">
+                                                                            {{ $value->amount }}
+                                                                        </div>
+                                                                    @endif
                                                                 @endif
-                                                            @else
-                                                                @if($value->amount == 0)
-                                                                <div class="dont_have_amount" style="color: red;">หมด</div>
-                                                                @else
-                                                                    <div class="col-sm-1 have_amount">
-                                                                        {{$value->amount}}
-                                                                    </div>
-                                                                @endif
-                                                            @endif
                                                             </h6>
                                                         </div>
                                                     </td>
-                                                    @if($value->year == "2023")
+                                                    @if ($value->year == '2023')
                                                         <td>
                                                             <div class="table-data__info">
-                                                                <h6 style="color:#000;">{{$value->year}}</h6>
+                                                                <h6 style="color:#000;">{{ $value->year }}</h6>
                                                             </div>
                                                         </td>
-                                                    @else 
+                                                    @else
                                                         <td>
                                                             <div class="table-data__info">
-                                                                <h6 style="color:red;">{{$value->year}}</h6>
+                                                                <h6 style="color:red;">{{ $value->year }}</h6>
                                                             </div>
                                                         </td>
                                                     @endif
                                                     <td>
                                                         <div class="table-data__info">
-                                                            <h6>{{$value->dot}}</h6>
+                                                            <h6>{{ $value->dot }}</h6>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        @if($value->stock == 0)
-                                                             <div class="table-data__info stock">
-                                                                 <h6>0</h6>
-                                                             </div>
-                                                         @else 
-                                                             <div class="table-data__info">
-                                                                 <h6>{{$value->stock}}</h6>
-                                                             </div>
-                                                         @endif
-                                                     </td>
-                                                    @if(auth('admin')->user()->role == "4")
-                                                    <td>
-                                                        <a href="{{url('/admin/thaiwatsadu/edit/')}}/{{$value->id}}">
-                                                            <i class="fa fa-pencil-square" style="color:blue;"></i>
-                                                        </a>
+                                                        @if ($value->stock == 0)
+                                                            <div class="table-data__info stock">
+                                                                <h6>0</h6>
+                                                            </div>
+                                                        @else
+                                                            <div class="table-data__info">
+                                                                <h6>{{ $value->stock }}</h6>
+                                                            </div>
+                                                        @endif
                                                     </td>
+                                                    @if (auth('admin')->user()->role == '4')
+                                                        <td>
+                                                            <a
+                                                                href="{{ url('/admin/thaiwatsadu/edit/') }}/{{ $value->id }}">
+                                                                <i class="fa fa-pencil-square" style="color:blue;"></i>
+                                                            </a>
+                                                        </td>
                                                     @endif
                                                 </tr>
                                             </tbody>
-                                            @endforeach
-                                        </table>
-                                    </div>
+                                        @endforeach
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                            <!-- modal delete -->                            
-                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-sm" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <p>ลบจำนวนสินค้า</p>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form action="{{url('/admin/thaiwatsadu/search-delete-tyre')}}" method="POST" enctype="multipart/form-data" autocomplete="off">@csrf
-                                        <div class="modal-body">
-                                            <input type="text" class="form-control" style="height: calc(1.5rem)" name="amount" placeholder="จำนวนสินค้าที่ต้องการลบ">
-                                            <input type="hidden" name="id">
-                                            <input type="hidden" name="search">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">ยกเลิก</button>
-                                            <button type="submit" class="btn btn-danger btn-sm">ลบ</button>
-                                        </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end modal delete -->
-                            <!-- modal add -->
-                            <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-sm" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <p>เพิ่มจำนวนสินค้า</p>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <form action="{{url('/admin/thaiwatsadu/search-add-tyre')}}" method="POST" enctype="multipart/form-data" autocomplete="off">@csrf
-                                        <div class="modal-body">
-                                            <input type="text" class="form-control" style="height: calc(1.5rem)" name="amount" placeholder="จำนวนสินค้าที่ต้องการเพิ่ม">
-                                            <input type="hidden" name="id">
-                                            <input type="hidden" name="search">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">ยกเลิก</button>
-                                            <button type="submit" class="btn btn-primary btn-sm">เพิ่ม</button>
-                                        </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end modal add -->
             </div>
+            <!-- modal delete -->
+            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <p>ลบจำนวนสินค้า</p>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{ url('/admin/thaiwatsadu/search-delete-tyre') }}" method="POST"
+                            enctype="multipart/form-data" autocomplete="off">@csrf
+                            <div class="modal-body">
+                                <input type="text" class="form-control" name="amount"
+                                    placeholder="จำนวนสินค้าที่ต้องการลบ">
+                                <input type="hidden" name="id">
+                                <input type="hidden" name="search">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                    data-dismiss="modal">ยกเลิก</button>
+                                <button type="submit" class="btn btn-danger btn-sm">ลบ</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal delete -->
+            <!-- modal add -->
+            <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <p>เพิ่มจำนวนสินค้า</p>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{ url('/admin/thaiwatsadu/search-add-tyre') }}" method="POST"
+                            enctype="multipart/form-data" autocomplete="off">@csrf
+                            <div class="modal-body">
+                                <input type="text" class="form-control" name="amount"
+                                    placeholder="จำนวนสินค้าที่ต้องการเพิ่ม">
+                                <input type="hidden" name="id">
+                                <input type="hidden" name="search">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                    data-dismiss="modal">ยกเลิก</button>
+                                <button type="submit" class="btn btn-primary btn-sm">เพิ่ม</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal add -->
         </div>
+    </div>
 @endsection
 
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            var search = "{!! $search_old !!}"
+            $('#add').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-<script>
-    $( document ).ready(function() {
-        var search = "{!! $search_old !!}"
-        $('#add').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
+                var modal = $(this)
 
-            var modal = $(this)
+                modal.find('.modal-body input[name="id"]').val(id)
+                modal.find('.modal-body input[name="search"]').val(search)
+            })
+        });
+    </script>
 
-            modal.find('.modal-body input[name="id"]').val(id)
-            modal.find('.modal-body input[name="search"]').val(search)
-        })
-    });
-</script> 
+    <script>
+        $(document).ready(function() {
+            var search = "{!! $search_old !!}"
+            $('#delete').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
 
-<script>
-    $( document ).ready(function() {
-        var search = "{!! $search_old !!}"
-        $('#delete').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
+                var modal = $(this)
 
-            var modal = $(this)
+                modal.find('.modal-body input[name="id"]').val(id)
+                modal.find('.modal-body input[name="search"]').val(search)
+            })
+        });
 
-            modal.find('.modal-body input[name="id"]').val(id)
-            modal.find('.modal-body input[name="search"]').val(search)
-        })
-    });
+        function func_Check_have_product() {
+            // Get the checkbox
+            var checkBox = document.getElementById("check_have_product");
 
-    function func_Check_have_product() {
-          // Get the checkbox
-          var checkBox = document.getElementById("check_have_product");
-
-          // If the checkbox is checked, display the output text
-          if (checkBox.checked == true){
-            $.each($('.dont_have_amount'), function(index, val) {
-                $(val).parents('tr')[0].style.display = "none"
-            });
-          } else {
+            // If the checkbox is checked, display the output text
+            if (checkBox.checked == true) {
                 $.each($('.dont_have_amount'), function(index, val) {
-                $(val).parents('tr')[0].style.display = "table-row"
-            });
-          }
+                    $(val).parents('tr')[0].style.display = "none"
+                });
+            } else {
+                $.each($('.dont_have_amount'), function(index, val) {
+                    $(val).parents('tr')[0].style.display = "table-row"
+                });
+            }
         }
 
-    function func_Check_stock() {
-        var checkBox = document.getElementById("check_stock");
+        function func_Check_stock() {
+            var checkBox = document.getElementById("check_stock");
 
-        if (checkBox.checked == true){
+            if (checkBox.checked == true) {
                 $.each($('.stock'), function(index, val) {
-                $(val).parents('tr')[0].style.display = "none"
-            });
-        } else {
+                    $(val).parents('tr')[0].style.display = "none"
+                });
+            } else {
                 $.each($('.stock'), function(index, val) {
-                $(val).parents('tr')[0].style.display = "table-row"
-            });
+                    $(val).parents('tr')[0].style.display = "table-row"
+                });
+            }
         }
-    }
-    
-</script>
-
+    </script>
 @endsection

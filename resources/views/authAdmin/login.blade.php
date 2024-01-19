@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<center><img src="{{ asset('/image/logo-store.png')}}"></center>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

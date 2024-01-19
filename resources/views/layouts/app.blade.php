@@ -13,8 +13,11 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    {{-- <link rel="dns-prefetch" href="https://fonts.gstatic.com"> --}}
+    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css"> --}}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap');
+    </style>
 
     <!-- favicon --> 
     <link rel="icon" href="/favicon.ico" type="image/x-icon"/>

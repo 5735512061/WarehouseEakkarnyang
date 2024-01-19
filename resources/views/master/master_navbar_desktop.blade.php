@@ -1,5 +1,5 @@
 <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
+            <header class="header-desktop" style="font-family: 'Noto Sans Thai', sans-serif !important;">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">

@@ -111,13 +111,9 @@ class CustomerController extends Controller
         $search = $request->get('search');
         $searchs = Tyreproduct::where('size','like','%'.$search.'%')
                               ->orderByRaw('FIELD(category,"MICHELIN","BF Goodrich","OTANI","MAXXIS","YOKOHAMA","BRIDGSTONE","TOYO","NITTO","KUMHO","PIRELLI","GOODYEAR","KENDA","RAIDEN","อื่นๆ")')->OrderBy('size','asc')->get();
-        $search_otanis = Tyreproduct::where('size','like','%'.$search.'%')
-                                    ->where('category',"OTANI")
-                                    ->OrderBy('size','asc')->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('/customer/khokkloi/customer_search')->with('searchs',$searchs)
-                                                         ->with('search_otanis',$search_otanis)
                                                          ->with('page',$page)
                                                          ->with('NUM_PAGE',$NUM_PAGE);
     }

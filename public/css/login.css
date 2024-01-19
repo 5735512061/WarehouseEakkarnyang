@@ -2,9 +2,14 @@
 /* CSS Document */
 
 body {
-  background-image: url("../image/bg.png");
+  /* background-image: url("../image/bg.png"); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   height: 760px;
+  background-color: #2b3181;
+}
+
+.card-header{
+  font-family: 'Noto Sans Thai', sans-serif !important;
 }

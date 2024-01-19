@@ -1,5 +1,5 @@
 <!-- HEADER MOBILE-->
-        <header class="header-mobile d-block d-lg-none">
+        <header class="header-mobile d-block d-lg-none" style="font-family: 'Noto Sans Thai', sans-serif;">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
@@ -22,58 +22,25 @@
                                 <i class="fas fa-dot-circle-o"></i>คลังสินค้า</a>
                             <ul class="list-unstyled js-sub-list">
                                 <li>
-                                    <a href="{{url('/admin/stock-main/warehouse')}}">คลังสินค้าหลัก</a>
+                                    <a href="{{url('/admin/stock-main/tyre')}}">คลังสินค้าหลัก</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/khokkloi/warehouse')}}">สาขาโคกกลอย</a>
+                                    <a href="{{url('/admin/khokkloi/tyre')}}">สาขาโคกกลอย</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/bypart/warehouse')}}">สาขาบายพาส</a>
+                                    <a href="{{url('/admin/bypart/tyre')}}">สาขาบายพาส</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/thaiwatsadu/warehouse')}}">สาขาไทวัสดุ</a>
+                                    <a href="{{url('/admin/thaiwatsadu/tyre')}}">สาขาไทวัสดุ</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/chaofa/warehouse')}}">สาขาเจ้าฟ้าตะวันออก</a>
+                                    <a href="{{url('/admin/chaofa/tyre')}}">สาขาเจ้าฟ้าตะวันออก</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/thalang/warehouse')}}">สาขาถลาง</a>
+                                    <a href="{{url('/admin/thalang/tyre')}}">สาขาถลาง</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/phangnga/warehouse')}}">สาขาเมืองพังงา</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>รายงาน</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="#">สรุปรายงาน</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>รายการขาย</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="#">สร้างรายการขาย</a>
-                                </li>
-                                <li>
-                                    <a href="#">ดูรายการขาย</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-shopping-cart"></i>รายการซื้อ</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="#">สร้างรายการซื้อ</a>
-                                </li>
-                                <li>
-                                    <a href="#">ดูรายการซื้อ</a>
+                                    <a href="{{url('/admin/phangnga/tyre')}}">สาขาเมืองพังงา</a>
                                 </li>
                             </ul>
                         </li>
@@ -91,7 +58,7 @@
         </header>
         <!-- END HEADER MOBILE-->
         <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
+        <aside class="menu-sidebar d-none d-lg-block" style="font-family: 'Noto Sans Thai', sans-serif;">
             <div class="logo">
                 <a href="{{url('/admin/khokkloi/tyre')}}">
                     <img src="{{ asset('/template/images/icon/logo.jpg')}}" alt="เอกการยาง" />
@@ -105,58 +72,25 @@
                                 <i class="fas fa-dot-circle-o"></i>คลังสินค้า</a>
                             <ul class="list-unstyled js-sub-list">
                                 <li>
-                                    <a href="{{url('/admin/stock-main/warehouse')}}">คลังสินค้าหลัก</a>
+                                    <a href="{{url('/admin/stock-main/tyre')}}">คลังสินค้าหลัก</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/khokkloi/warehouse')}}">สาขาโคกกลอย</a>
+                                    <a href="{{url('/admin/khokkloi/tyre')}}">สาขาโคกกลอย</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/bypart/warehouse')}}">สาขาบายพาส</a>
+                                    <a href="{{url('/admin/bypart/tyre')}}">สาขาบายพาส</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/thaiwatsadu/warehouse')}}">สาขาไทวัสดุ</a>
+                                    <a href="{{url('/admin/thaiwatsadu/tyre')}}">สาขาไทวัสดุ</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/chaofa/warehouse')}}">สาขาเจ้าฟ้าตะวันออก</a>
+                                    <a href="{{url('/admin/chaofa/tyre')}}">สาขาเจ้าฟ้าตะวันออก</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/thalang/warehouse')}}">สาขาถลาง</a>
+                                    <a href="{{url('/admin/thalang/tyre')}}">สาขาถลาง</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('/admin/phangnga/warehouse')}}">สาขาเมืองพังงา</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>รายงาน</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="#">สรุปรายงาน</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>รายการขาย</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="#">สร้างรายการขาย</a>
-                                </li>
-                                <li>
-                                    <a href="#">ดูรายการขาย</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-shopping-cart"></i>รายการซื้อ</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="#">สร้างรายการซื้อ</a>
-                                </li>
-                                <li>
-                                    <a href="#">ดูรายการซื้อ</a>
+                                    <a href="{{url('/admin/phangnga/tyre')}}">สาขาเมืองพังงา</a>
                                 </li>
                             </ul>
                         </li>

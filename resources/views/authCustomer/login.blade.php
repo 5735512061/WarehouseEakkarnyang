@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<center><img src="{{ asset('/image/logo-store.png')}}"></center>
+<div class="container" style="font-family: 'Noto Sans Thai', sans-serif !important;">
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card" style="margin-bottom: 20px;">
-                <div class="card-header">{{ __('เข้าสู่ระบบ') }}</div>
+                <div class="card-header" >{{ __('เข้าสู่ระบบ') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('customer.login.submit') }}">

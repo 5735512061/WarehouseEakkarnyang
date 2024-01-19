@@ -4,7 +4,7 @@
 
 	@include("/customer/customer_navbar_mobile")  
         <!-- PAGE CONTAINER-->
-        <div class="page-container">
+        <div class="page-container" style="font-family: 'Noto Sans Thai', sans-serif;">
         	{{-- @include("/customer/customer_navbar_desktop") --}}
             <!-- MAIN CONTENT-->
             <div class="main-content">
