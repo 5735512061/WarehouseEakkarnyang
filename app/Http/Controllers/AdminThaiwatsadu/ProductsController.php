@@ -5,11 +5,23 @@ namespace App\Http\Controllers\AdminThaiwatsadu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tyrethaiwatsadu;
+use App\Tyrecategory;
 
 class ProductsController extends Controller
 {
     public function warehouse() {
         return view('/admin/thaiwatsadu/admin_warehouse');
+    }
+
+    public function create_tyre() {
+        $tyrecategories = Tyrecategory::get();
+        return view('/admin/thaiwatsadu/admin_create_tyre')->with('tyrecategories',$tyrecategories);
+    }
+
+    public function createtyre(Request $request) {
+        $tyre = request()->all();
+        Tyrethaiwatsadu::create($tyre);
+        return redirect()->action('AdminThaiwatsadu\ProductsController@create_tyre');
     }
 
     public function product_tyre(Request $request) {

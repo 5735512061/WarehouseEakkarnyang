@@ -5,11 +5,23 @@ namespace App\Http\Controllers\AdminChaofa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tyrechaofa;
+use App\Tyrecategory;
 
 class ProductsController extends Controller
 {
     public function warehouse() {
         return view('/admin/chaofa/admin_warehouse');
+    }
+
+    public function create_tyre() {
+        $tyrecategories = Tyrecategory::get();
+        return view('/admin/chaofa/admin_create_tyre')->with('tyrecategories',$tyrecategories);
+    }
+
+    public function createtyre(Request $request) {
+        $tyre = request()->all();
+        Tyrechaofa::create($tyre);
+        return redirect()->action('AdminChaofa\ProductsController@create_tyre');
     }
 
     public function product_tyre(Request $request) {

@@ -5,12 +5,24 @@ namespace App\Http\Controllers\AdminKhokkloi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tyreproduct;
+use App\Tyrecategory;
 use Auth;
 
 class ProductsController extends Controller
 {
     public function warehouse() {
         return view('/admin/khokkloi/admin_warehouse');
+    }
+
+    public function create_tyre() {
+        $tyrecategories = Tyrecategory::get();
+        return view('/admin/khokkloi/admin_create_tyre')->with('tyrecategories',$tyrecategories);
+    }
+
+    public function createtyre(Request $request) {
+        $tyre = request()->all();
+        Tyreproduct::create($tyre);
+        return redirect()->action('AdminKhokkloi\ProductsController@create_tyre');
     }
 
     public function product_tyre(Request $request) {

@@ -6,12 +6,24 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Tyrephangnga;
+use App\Tyrecategory;
 use Auth;
 
 class ProductsController extends Controller
 {
     public function warehouse() {
         return view('/admin/phangnga/admin_warehouse');
+    }
+
+    public function create_tyre() {
+        $tyrecategories = Tyrecategory::get();
+        return view('/admin/phangnga/admin_create_tyre')->with('tyrecategories',$tyrecategories);
+    }
+
+    public function createtyre(Request $request) {
+        $tyre = request()->all();
+        Tyrephangnga::create($tyre);
+        return redirect()->action('AdminPhangnga\ProductsController@create_tyre');
     }
 
     public function product_tyre(Request $request) {

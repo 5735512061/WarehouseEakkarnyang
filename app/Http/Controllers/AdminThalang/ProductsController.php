@@ -5,11 +5,23 @@ namespace App\Http\Controllers\AdminThalang;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tyrethalang;
+use App\Tyrecategory;
 
 class ProductsController extends Controller
 {
     public function warehouse() {
         return view('/admin/thalang/admin_warehouse');
+    }
+
+    public function create_tyre() {
+        $tyrecategories = Tyrecategory::get();
+        return view('/admin/thalang/admin_create_tyre')->with('tyrecategories',$tyrecategories);
+    }
+
+    public function createtyre(Request $request) {
+        $tyre = request()->all();
+        Tyrethalang::create($tyre);
+        return redirect()->action('AdminThalang\ProductsController@create_tyre');
     }
 
     public function product_tyre(Request $request) {

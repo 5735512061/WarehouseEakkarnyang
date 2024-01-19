@@ -165,6 +165,8 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::post('/stock-main/search','AdminController@search_stock_main');
 	Route::get('/stock-main/search','AdminController@search_stock_main_get');
 	Route::get('/stock-main/warehouse','AdminStockMain\ProductsController@warehouse');
+	Route::get('/stock-main/create-tyre','AdminStockMain\ProductsController@create_tyre');
+	Route::post('/stock-main/create-tyre','AdminStockMain\ProductsController@createtyre');
 	Route::get('/stock-main/tyre','AdminStockMain\ProductsController@product_tyre')->name('admin.home');
 	Route::get('/stock-main/edit/{id}', 'AdminStockMain\ProductsController@edit_tyre');
 	Route::post('/stock-main/update-tyre','AdminStockMain\ProductsController@update_tyre');
@@ -177,6 +179,8 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::post('/khokkloi/search','AdminController@search_khokkloi');
 	Route::get('/khokkloi/search','AdminController@search_khokkloi_get');
 	Route::get('/khokkloi/warehouse','AdminKhokkloi\ProductsController@warehouse');
+	Route::get('/khokkloi/create-tyre','AdminKhokkloi\ProductsController@create_tyre');
+	Route::post('/khokkloi/create-tyre','AdminKhokkloi\ProductsController@createtyre');
 	Route::get('/khokkloi/tyre','AdminKhokkloi\ProductsController@product_tyre');
 	Route::get('/khokkloi/edit/{id}', 'AdminKhokkloi\ProductsController@edit_tyre');
 	Route::post('/khokkloi/update-tyre','AdminKhokkloi\ProductsController@update_tyre');
@@ -203,6 +207,8 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::post('/thaiwatsadu/search','AdminController@search_thaiwatsadu');
 	Route::get('/thaiwatsadu/search','AdminController@search_thaiwatsadu_get');	
 	Route::get('/thaiwatsadu/warehouse','AdminThaiwatsadu\ProductsController@warehouse');
+	Route::get('/thaiwatsadu/create-tyre','AdminThaiwatsadu\ProductsController@create_tyre');
+	Route::post('/thaiwatsadu/create-tyre','AdminThaiwatsadu\ProductsController@createtyre');
 	Route::get('/thaiwatsadu/tyre','AdminThaiwatsadu\ProductsController@product_tyre');
 	Route::get('/thaiwatsadu/edit/{id}', 'AdminThaiwatsadu\ProductsController@edit_tyre');
 	Route::post('/thaiwatsadu/update-tyre','AdminThaiwatsadu\ProductsController@update_tyre');
@@ -215,6 +221,8 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::post('/chaofa/search','AdminController@search_chaofa');
 	Route::get('/chaofa/search','AdminController@search_chaofa_get');	
 	Route::get('/chaofa/warehouse','AdminChaofa\ProductsController@warehouse');
+	Route::get('/chaofa/create-tyre','AdminChaofa\ProductsController@create_tyre');
+	Route::post('/chaofa/create-tyre','AdminChaofa\ProductsController@createtyre');
 	Route::get('/chaofa/tyre','AdminChaofa\ProductsController@product_tyre');
 	Route::get('/chaofa/edit/{id}', 'AdminChaofa\ProductsController@edit_tyre');
 	Route::post('/chaofa/update-tyre','AdminChaofa\ProductsController@update_tyre');
@@ -227,6 +235,8 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::post('/thalang/search','AdminController@search_thalang');
 	Route::get('/thalang/search','AdminController@search_thalang_get');
 	Route::get('/thalang/warehouse','AdminThalang\ProductsController@warehouse');
+	Route::get('/thalang/create-tyre','AdminThalang\ProductsController@create_tyre');
+	Route::post('/thalang/create-tyre','AdminThalang\ProductsController@createtyre');
 	Route::get('/thalang/tyre','AdminThalang\ProductsController@product_tyre');
 	Route::get('/thalang/edit/{id}', 'AdminThalang\ProductsController@edit_tyre');
 	Route::post('/thalang/update-tyre','AdminThalang\ProductsController@update_tyre');
@@ -239,6 +249,8 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::post('/phangnga/search','AdminController@search_phangnga');
 	Route::get('/phangnga/search','AdminController@search_phangnga_get');
 	Route::get('/phangnga/warehouse','AdminPhangnga\ProductsController@warehouse');
+	Route::get('/phangnga/create-tyre','AdminPhangnga\ProductsController@create_tyre');
+	Route::post('/phangnga/create-tyre','AdminPhangnga\ProductsController@createtyre');
 	Route::get('/phangnga/tyre','AdminPhangnga\ProductsController@product_tyre');
 	Route::get('/phangnga/edit/{id}', 'AdminPhangnga\ProductsController@edit_tyre');
 	Route::post('/phangnga/update-tyre','AdminPhangnga\ProductsController@update_tyre');

@@ -5,12 +5,24 @@ namespace App\Http\Controllers\AdminStockMain;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\TyreStockMain;
+use App\Tyrecategory;
 use Auth;
 
 class ProductsController extends Controller
 {
     public function warehouse() {
         return view('/admin/stock_main/admin_warehouse');
+    }
+
+    public function create_tyre() {
+        $tyrecategories = Tyrecategory::get();
+        return view('/admin/stock_main/admin_create_tyre')->with('tyrecategories',$tyrecategories);
+    }
+
+    public function createtyre(Request $request) {
+        $tyre = request()->all();
+        TyreStockMain::create($tyre);
+        return redirect()->action('AdminStockMain\ProductsController@create_tyre');
     }
 
     public function product_tyre(Request $request) {
