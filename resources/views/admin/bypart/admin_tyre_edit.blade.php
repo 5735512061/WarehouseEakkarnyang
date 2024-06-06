@@ -80,6 +80,16 @@
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
+                                                    <label for="text-input"
+                                                        class=" form-control-label">จำนวนที่ต้องสต๊อก</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="stock" name="stock"
+                                                        value="{{ $tyre->stock }}" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
                                                     <label for="select"
                                                         class=" form-control-label">สินค้าที่ต้องสต๊อก</label>
                                                 </div>

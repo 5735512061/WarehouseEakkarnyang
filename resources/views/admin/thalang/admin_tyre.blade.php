@@ -13,7 +13,7 @@
             <center>
                 @if (auth('admin')->user()->role == '2')
                     <div class="col-md-4 mt-3">
-                        <a href="{{ url('/admin/bypart/create-tyre') }}" type="button" class="btn btn-primary"><i
+                        <a href="{{ url('/admin/thalang/create-tyre') }}" type="button" class="btn btn-primary"><i
                                 class="zmdi zmdi-thalang"></i> เพิ่มสินค้าในคลัง</a>
                     </div>
                 @endif
@@ -74,7 +74,7 @@
                 $sum = $amount_michelin + $amount_bfg + $amount_otani + $amount_maxxis + $amount_yoko + $amount_brid + $amount_toyo + $amount_nitto + $amount_goodyear + $amount_raiden + $amount_other;
                 $sum_format = number_format($sum);
 
-                $stock = DB::table('tyrethalangs')->sum('stock');
+                $stock = DB::table('tyrethalangs')->where('stock','!=',0)->where('stock_required','ต้องสต๊อก')->sum('stock');
                 $stock_format = number_format($stock);
             @endphp
             <center>

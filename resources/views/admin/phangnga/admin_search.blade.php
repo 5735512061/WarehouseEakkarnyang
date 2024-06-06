@@ -68,7 +68,7 @@
                 $sum = $amount_michelin + $amount_bfg + $amount_otani + $amount_maxxis + $amount_yoko + $amount_brid + $amount_toyo + $amount_nitto + $amount_goodyear + $amount_raiden + $amount_other;
                 $sum_format = number_format($sum);
 
-                $stock = DB::table('tyrephangngas')->sum('stock');
+                $stock = DB::table('tyrephangngas')->where('stock','!=',0)->where('stock_required','ต้องสต๊อก')->sum('stock');
                 $stock_format = number_format($stock);
             @endphp
             <center>
